@@ -1,0 +1,26 @@
+#content form .submit, .login_content form input[type=submit] {
+    float: left;
+    width: 100%;
+    margin-top: 16px;
+    margin-left: 0px;
+}
+#content form .btn-success{
+    background: #26B99A;
+    border: 1px solid #169F85;
+}
+
+.login_content .login-btn{
+    width: 190px;
+}
+.login input{
+    margin-bottom: 0px !important;
+}
+.login label{
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.auth-input{
+    padding-bottom: 30px;
+}
