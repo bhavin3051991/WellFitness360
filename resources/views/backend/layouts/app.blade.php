@@ -68,6 +68,8 @@
     <script src="{{ asset('backend/js/lightcase.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/js/jquery-confirm.min.js') }}"></script>
     {{-- End Js-Tree & Lightcase confirm box --}}
+    <!-- jquery.inputmask -->
+    <script src="{{ asset('backend/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset('backend/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- bootstrap-progressbar -->
