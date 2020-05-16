@@ -36,29 +36,29 @@ class CMSPagesController extends Controller
             $count = $this->About_Us->where('id',1)->first(); // Count existing record
             if(empty($count)){
                 if($fullImagePath){
-                    $this->About_Us->title              = trim($request->title);
-                    $this->About_Us->short_description  = $request->short_description;
-                    $this->About_Us->long_description   = $request->long_description;
-                    $this->About_Us->image              = ($fullImagePath) ? $fullImagePath : Null;
+                    $this->About_Us->Title              = trim($request->Title);
+                    $this->About_Us->ShortDescription  = $request->ShortDescription;
+                    $this->About_Us->LongDescription   = $request->LongDescription;
+                    $this->About_Us->Image              = ($fullImagePath) ? $fullImagePath : Null;
                     $result                             = $this->About_Us->save();
                 }else{
-                    $this->About_Us->title              = trim($request->title);
-                    $this->About_Us->short_description  = $request->short_description;
-                    $this->About_Us->long_description   = $request->long_description;
+                    $this->About_Us->Title              = trim($request->title);
+                    $this->About_Us->ShortDescription  = $request->ShortDescription;
+                    $this->About_Us->LongDescription   = $request->LongDescription;
                     $result                             = $this->About_Us->save();
                 }
             }else{
                 $data = About_Us::find(1);
                 if($fullImagePath){
-                    $data->title                = trim($request->title);
-                    $data->short_description    = $request->short_description;
-                    $data->long_description     = $request->long_description;
-                    $data->image                = ($fullImagePath) ? $fullImagePath : Null;
+                    $data->Title                = trim($request->Title);
+                    $data->ShortDescription    = $request->ShortDescription;
+                    $data->LongDescription     = $request->long_description;
+                    $data->Image                = ($fullImagePath) ? $fullImagePath : Null;
                     $result                     = $data->save();
                 }else{
-                    $data->title                = trim($request->title);
-                    $data->short_description    = $request->short_description;
-                    $data->long_description     = $request->long_description;
+                    $data->Title                = trim($request->Title);
+                    $data->ShortDescription    = $request->ShortDescription;
+                    $data->LongDescription     = $request->LongDescription;
                     $result                     = $data->save();
                 }
             }
@@ -82,22 +82,22 @@ class CMSPagesController extends Controller
         if($request->isMethod('post')) {
             $count = $this->Contact_Us->where('id',1)->first(); // Count existing record
             if(empty($count)){
-                $this->Contact_Us->email            = trim($request->email);
-                $this->Contact_Us->contact_number   = trim($request->contact_number);
-                $this->Contact_Us->telephone        = $request->telephone;
-                $this->Contact_Us->address          = trim($request->address);
-                $this->Contact_Us->website          = trim($request->website);
-                $this->Contact_Us->description      = trim($request->description);
+                $this->Contact_Us->Email            = trim($request->Email);
+                $this->Contact_Us->ContactNumber   = trim($request->ContactNumber);
+                $this->Contact_Us->Telephone        = $request->Telephone;
+                $this->Contact_Us->Address          = trim($request->Address);
+                $this->Contact_Us->Website          = trim($request->Website);
+                $this->Contact_Us->Description      = trim($request->Description);
 
                 $result = $this->Contact_Us->save();
             }else{
                 $data                   = Contact_Us::find(1);
-                $data->email            = trim($request->email);
-                $data->contact_number   = trim($request->contact_number);
-                $data->telephone        = $request->telephone;
-                $data->address          = trim($request->address);
-                $data->website          = trim($request->website);
-                $data->description      = trim($request->description);
+                $data->Email            = trim($request->Email);
+                $data->ContactNumber   = trim($request->ContactNumber);
+                $data->Telephone        = $request->Telephone;
+                $data->Address          = trim($request->Address);
+                $data->Website          = trim($request->Website);
+                $data->Description      = trim($request->Description);
                 $result = $data->save();
             }
 

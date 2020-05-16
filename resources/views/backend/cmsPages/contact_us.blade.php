@@ -55,41 +55,41 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.email')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="email" name="email" value="@if(isset($contact_us->email) && !empty($contact_us->email)){{$contact_us->email}}@endif" class="form-control has-feedback-left" placeholder="Email">
+                            <input type="email" name="Email" value="@if(isset($contact_us->Email) && !empty($contact_us->Email)){{$contact_us->Email}}@endif" class="form-control has-feedback-left" placeholder="Email">
                             <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-                            <small class="text-danger">{{ $errors->first('email') }}</small>
+                            <small class="text-danger">{{ $errors->first('Email') }}</small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.contact_no')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                            <input type="text" name="contact_number" value="@if(isset($contact_us->contact_number) && !empty($contact_us->contact_number)){{$contact_us->contact_number}}@endif" maxlength="10" class="form-control" placeholder="Enter contact number">
+                            <input type="text" name="ContactNumber" value="@if(isset($contact_us->ContactNumber) && !empty($contact_us->ContactNumber)){{$contact_us->ContactNumber}}@endif" maxlength="10" class="form-control" placeholder="Enter contact number">
                             <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
-                            <small class="text-danger">{{ $errors->first('contact_no') }}</small>
+                            <small class="text-danger">{{ $errors->first('ContactNumber') }}</small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">@lang('backend/list.forms.telephone_no')</label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="text" name="telephone" value="@if(isset($contact_us->telephone) && !empty($contact_us->telephone)){{$contact_us->telephone}}@endif"  class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
+                            <input type="text" name="Telephone" value="@if(isset($contact_us->Telephone) && !empty($contact_us->Telephone)){{$contact_us->Telephone}}@endif"  class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
                             <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                            <small class="text-danger">{{ $errors->first('telephone') }}</small>
+                            <small class="text-danger">{{ $errors->first('Telephone') }}</small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.website')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="website" value="@if(isset($contact_us->website) && !empty($contact_us->website)){{$contact_us->website}}@endif" id="title" class="form-control col-md-7 col-xs-12" placeholder="Enter title">
-                            <small class="text-danger">{{ $errors->first('website') }}</small>
+                            <input type="text" name="Website" value="@if(isset($contact_us->Website) && !empty($contact_us->Website)){{$contact_us->Website}}@endif" id="title" class="form-control col-md-7 col-xs-12" placeholder="Enter title">
+                            <small class="text-danger">{{ $errors->first('Website') }}</small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.address')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="address" class="form-control" rows="3" placeholder="Enter address">@if(isset($contact_us->address) && !empty($contact_us->address)){{$contact_us->address}} @endif</textarea>
+                            <textarea name="Address" class="form-control" rows="3" placeholder="Enter address">@if(isset($contact_us->Address) && !empty($contact_us->Address)){{$contact_us->Address}} @endif</textarea>
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="description" class="resizable_textarea form-control" placeholder="Enter description">@if(isset($contact_us->description) && !empty($contact_us->description)) {{ $contact_us->description }} @endif</textarea>
+                            <textarea name="Description" class="resizable_textarea form-control" placeholder="Enter description">@if(isset($contact_us->Description) && !empty($contact_us->Description)) {{ $contact_us->Description }} @endif</textarea>
                         </div>
                     </div>
                     <div class="ln_solid"></div>

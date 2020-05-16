@@ -55,29 +55,29 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.title')<span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" name="title" value="@if(isset($about_us->title) && !empty($about_us->title)){{$about_us->title}}@endif" id="title" class="form-control col-md-7 col-xs-12" placeholder="Enter title">
-                        <small class="text-danger">{{ $errors->first('name') }}</small>
+                        <input type="text" name="Title" value="@if(isset($about_us->Title) && !empty($about_us->Title)){{$about_us->Title}}@endif" id="title" class="form-control col-md-7 col-xs-12" placeholder="Enter title">
+                        <small class="text-danger">{{ $errors->first('Title') }}</small>
                       </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.short_description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="short_description" class="form-control" rows="3" placeholder="Enter short description">@if(isset($about_us->short_description) && !empty($about_us->short_description)) {{ $about_us->short_description }} @endif</textarea>
+                            <textarea name="ShortDescription" class="form-control" rows="3" placeholder="Enter short description">@if(isset($about_us->ShortDescription) && !empty($about_us->ShortDescription)) {{ $about_us->ShortDescription }} @endif</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.long_description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="long_description" class="form-control" rows="3" placeholder="Enter long description">@if(isset($about_us->long_description) && !empty($about_us->long_description)) {{ $about_us->long_description }} @endif</textarea>
+                            <textarea name="LongDescription" class="form-control" rows="3" placeholder="Enter long description">@if(isset($about_us->LongDescription) && !empty($about_us->LongDescription)) {{ $about_us->LongDescription }} @endif</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">@lang('backend/list.forms.image')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="file" name="image" value="" id="about-us-image" class="form-control col-md-7 col-xs-12" placeholder="Select image">
+                          <input type="file" name="Image" value="" id="about-us-image" class="form-control col-md-7 col-xs-12" placeholder="Select image">
                           <small class="text-danger">{{ $errors->first('image') }}</small>
                         </div>
                       </div>
@@ -85,7 +85,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <img id="ImagePreview" src="@if(isset($about_us->image)){{asset($about_us->image)}}@endif" alt="No image uploaded" height="100px"/ >
+                            <img id="ImagePreview" src="@if(isset($about_us->Image)){{asset($about_us->Image)}}@endif" alt="No image uploaded" height="100px"/ >
                         </div>
                       </div>
 

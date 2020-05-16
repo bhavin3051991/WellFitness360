@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class About_Us extends Model
 {
     protected $table = 'about_us';
-
-    protected $fillable = ['title','image','short_description','long_description'];
+    protected $primaryKey = 'ID';
+    public $timestamps = false;
+    protected $fillable = ['Title','Image','ShortDescription','LongDescription'];
 }
