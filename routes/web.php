@@ -20,6 +20,17 @@ Route::get('/', function () {
 });
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
+Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+Route::get('login/instagram','Auth\LoginController@redirectToInstagramProvider')->name('instagram.login');
+Route::get('login/instagram/callback', 'Auth\LoginController@instagramProviderCallback')->name('instagram.login.callback');
+
+//Google login
+Route::get('auth/google', 'LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'LoginController@handleGoogleCallback');
+
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::match(['GET', 'POST'], 'login', 'LoginController@index')->name('login');
@@ -67,5 +78,13 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
     // Site Setting
     Route::get('/setting', 'SettingController@siteSetting')->name('setting');
     Route::put('/setting/update', 'SettingController@update')->name('settingUpdate');
+
+    // E-shop Management
+    Route::get('/E_shopManagement/delete/{id}', 'EshopController@destroy');
+    Route::resource('E_shopManagement', 'EshopController');
+
+    // Fees Management
+    Route::get('/FeesManagement/delete/{id}', 'FeesController@destroy');
+    Route::resource('FeesManagement', 'FeesController');
 
 });

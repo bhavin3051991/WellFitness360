@@ -376,8 +376,165 @@ $(document).ready(function () {
         }
     }
 
+    /** USE : Preview Image about-us */
     $("#about-us-image").change(function() {
         readURL1(this);
         $('.image_preview').show();
     });
+
+    /** USE : Preview image E-shop Management */
+    $("#shop-image").change(function() {
+        readURL1(this);
+        $('.image_preview').show();
+    });
+
+    /** USE : E-Shop Management form validation */
+    $('#addEshopForm').validate({
+		rules: {
+			Name:{
+				required:true,
+			},
+			Image:{
+                required:true,
+                extension: "JPG|JPEG|PNG",
+            },
+            Shop_URL:{
+                required:true,
+                url: true,
+            }
+		},
+		messages: {
+			Name:{
+				required: 'Please enter shop name',
+			},
+			Image:{
+                required: 'Please select shop image',
+                extension: "Allowed only JPG|JPEG|PNG files extension",
+            },
+            Shop_URL:{
+                required: 'Please enter website url',
+            }
+        },
+        errorPlacement: function (error, element) {
+		    error.insertAfter(element);
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+    });
+
+    /** USE : E-Shop Management form validation */
+    $('#editEshopForm').validate({
+		rules: {
+			Name:{
+				required:true,
+			},
+			Image:{
+                extension: "JPG|JPEG|PNG",
+            },
+            Shop_URL:{
+                required:true,
+                url: true,
+            }
+		},
+		messages: {
+			Name:{
+				required: 'Please enter shop name',
+			},
+			Image:{
+                extension: "Allowed only JPG|JPEG|PNG files extension",
+            },
+            Shop_URL:{
+                required: 'Please enter website url',
+            }
+        },
+        errorPlacement: function (error, element) {
+		    error.insertAfter(element);
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+    });
+
+    /** USE : Delete Trainer */
+	$(document).on("click",".deleteShop",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+          	$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/E_shopManagement/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+                    var object = JSON.parse(JSON.stringify(response));
+                    if(object.status){
+                        toastr.success(object.message);
+                        location.reload(true);
+                    }else{
+                        toastr.error(object.message);
+                    }
+				}
+			});
+        }
+        else{
+            return false;
+        }
+    });
+
+    $('#feesForm').validate({
+		rules: {
+			trainername:{
+				required:true,
+			},
+			trainerfee:{
+				required:true,
+				number:true,
+			},
+			admidfee:{
+				required:true,
+				number:true,
+			},
+		},
+		messages: {
+			trainername:{
+				required: 'Please select trainer name.',
+			},
+			trainerfee:{
+				required: 'Please enter trainer fee.',
+				number: 'Please enter valid trainer fee.'
+			},
+			admidfee:{
+				required: 'Please enter admin fee.',
+				number : 'Please enter valid admin fee.'
+			},
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+	/* USE : Delete Fees */
+	$(document).on("click",".deleteFees",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/FeesManagement/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					location.reload();
+				}
+			});
+		}
+		else{
+			return false;
+		}
+	});
+
 });

@@ -25,4 +25,6 @@ return [
     'about_us' => 'About-as',
     'contact_us' => 'Contact-us',
     'setting' => 'Settings',
+    'e_shop_management' => 'E-Shop Management',
+    'fees_management' => 'Fees Management',
 ];

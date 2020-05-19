@@ -5,8 +5,13 @@ return [
     'user_management' => 'User Management',
     'add_new' => 'Add New',
     'list' => 'List',
+    'fees_management' => 'Fees Management',
 
     'forms' => [
+        'add_new' => 'Add New',
+        'status' => 'Status',
+        'list' => 'List',
+        'name' => 'Name',
         'title' => 'Title',
         'short_description' => 'Short Description',
         'long_description' => 'Long Description',
@@ -24,5 +29,11 @@ return [
         'website' => 'Website',
         'image' => 'Image',
         'Setting' => 'Setting',
+        'e_shop_management' => 'E-Shop Management',
+        'add_shop_detail' => 'Add Shop Detail',
+        'edit_shop_detail' => 'Edit Shop Detail',
+        'website_url' => 'Website URL',
+        'add_fees' => 'Add Fees',
+        'edit_fees' => 'Edit Fees',
     ]
 ];

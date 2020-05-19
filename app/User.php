@@ -51,4 +51,10 @@ class User extends Authenticatable
             }
         }
     }
+
+     // Relationship one to one in admin Fees management
+    public function Fees()
+    {
+        return $this->belongsTo('App\Http\Models\FeesManagement', 'TrainerID','id');
+    }
 }

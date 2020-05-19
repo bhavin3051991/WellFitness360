@@ -1,4 +1,4 @@
-@php
+{{--  @php
     $permissions = [];
     if(Auth::user() && Auth::user()->id){
         $RolePermission =  Helper::getPermissions(Auth::user()->id);
@@ -9,7 +9,7 @@
         $RolePermission = [];
     }
 
-@endphp
+@endphp  --}}
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
       <div class="navbar nav_title" style="border: 0;">
@@ -45,72 +45,86 @@
               </ul>
             </li>
           </ul>
-          <ul class="nav side-menu">
-              <!-- <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')))) ||
-                          (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) )) ? 'active': ''  }}">
-                  <a><i class="fa fa-home"></i>
-                      @lang('backend/sidebar.administrator')
-                      <span class="fa fa-chevron-down"></span>
-                  </a>
-                  <ul class="nav child_menu" style="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit'))))
-                      || (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit'))))? 'display:block': ''  }}">
-                      <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')) ))? 'current-page': ''  }}">
-                          <a href="{{ route('module.index') }}">@lang('backend/sidebar.modules')</a>
-                      </li>
-                      <li class="{{ (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) ))? 'current-page': ''  }}">
-                          <a href="{{ route('rolepermission.index') }}">@lang('backend/sidebar.roles_permission')</a>
-                      </li>
-                  </ul>
-              </li> -->
+            <ul class="nav side-menu">
+                <!-- <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')))) ||
+                            (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) )) ? 'active': ''  }}">
+                    <a><i class="fa fa-home"></i>
+                        @lang('backend/sidebar.administrator')
+                        <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu" style="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit'))))
+                        || (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit'))))? 'display:block': ''  }}">
+                        <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')) ))? 'current-page': ''  }}">
+                            <a href="{{ route('module.index') }}">@lang('backend/sidebar.modules')</a>
+                        </li>
+                        <li class="{{ (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) ))? 'current-page': ''  }}">
+                            <a href="{{ route('rolepermission.index') }}">@lang('backend/sidebar.roles_permission')</a>
+                        </li>
+                    </ul>
+                </li> -->
 
-              {{--  Trainner Management  --}}
-              <li class="">
-                  <a href="{{ route('trainerManagement.index') }}">
-                      <i class="fa fa-user"></i>@lang('backend/sidebar.trainner_management')
-                  </a>
-              </li>
+                {{--  Trainner Management  --}}
+                <li class="">
+                    <a href="{{ route('trainerManagement.index') }}">
+                        <i class="fa fa-user"></i>@lang('backend/sidebar.trainner_management')
+                    </a>
+                </li>
 
-              {{--  User Management  --}}
-              <li class="">
-                  <a href="{{ route('UserManagement.index') }}">
-                      <i class="fa fa-user"></i>@lang('backend/sidebar.user_management')
-                  </a>
-              </li>
+                {{--  User Management  --}}
+                <li class="">
+                    <a href="{{ route('UserManagement.index') }}">
+                        <i class="fa fa-user"></i>@lang('backend/sidebar.user_management')
+                    </a>
+                </li>
 
-              {{--  Category Management  --}}
-              <li class="">
-                  <a href="{{ route('categoriesManagement.index') }}">
-                      <i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
-                  </a>
-              </li>
+                {{--  Category Management  --}}
+                <li class="">
+                    <a href="{{ route('categoriesManagement.index') }}">
+                        <i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
+                    </a>
+                </li>
 
-              {{--  CMS Pages Management  --}}
-              <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')))) ||
-                          (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) )) ? 'active': ''  }}">
-                  <a><i class="fa fa-file"></i>
-                      @lang('backend/sidebar.cms_pages')
-                      <span class="fa fa-chevron-down"></span>
-                  </a>
-                  <ul class="nav child_menu" style="{{ (request()->is('cms_aboutus')) || (request()->is('cms_contactus')) ? 'display:block': ''  }}">
-                      <li class="{{ (request()->is('module')) ? 'current-page': ''  }}">
-                          <a href="{{ route('cms_aboutus') }}">@lang('backend/sidebar.about_us')</a>
-                      </li>
-                      <li class="{{ (request()->is('cms_contactus')) ? 'current-page': ''  }}">
-                          <a href="{{ route('cms_contactus') }}">@lang('backend/sidebar.contact_us')</a>
-                      </li>
-                  </ul>
-              </li>
+                {{--  Fees Management  --}}
+                <li class="">
+                    <a href="{{ route('FeesManagement.index') }}">
+                    <i class="fa fa-money" aria-hidden="true"></i>@lang('backend/sidebar.fees_management')
+                    </a>
+                </li>
 
-              {{-- Site Seeting --}}
-              <li class="">
-                  <a href="{{ route('setting') }}">
-                      <i class="fa fa-list-ul"></i>@lang('backend/sidebar.setting')
-                  </a>
-              </li>
-          </ul>
+                {{-- Site Seeting --}}
+                <li class="">
+                    <a href="{{ route('E_shopManagement.index') }}">
+                        <i class="fa fa-bank"></i>@lang('backend/sidebar.e_shop_management')
+                    </a>
+                </li>
+
+                {{--  CMS Pages Management  --}}
+                <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')))) ||
+                            (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) )) ? 'active': ''  }}">
+                    <a><i class="fa fa-file"></i>
+                        @lang('backend/sidebar.cms_pages')
+                        <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu" style="{{ (request()->is('cms_aboutus')) || (request()->is('cms_contactus')) ? 'display:block': ''  }}">
+                        <li class="{{ (request()->is('module')) ? 'current-page': ''  }}">
+                            <a href="{{ route('cms_aboutus') }}">@lang('backend/sidebar.about_us')</a>
+                        </li>
+                        <li class="{{ (request()->is('cms_contactus')) ? 'current-page': ''  }}">
+                            <a href="{{ route('cms_contactus') }}">@lang('backend/sidebar.contact_us')</a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Site Seeting --}}
+                <li class="">
+                    <a href="{{ route('setting') }}">
+                        <i class="fa fa-list-ul"></i>@lang('backend/sidebar.setting')
+                    </a>
+                </li>
+            </ul>
+            </div>
         </div>
-      </div>
-      @endif
+        @endif
       {{--  End User-sidebar  --}}
 
       {{--  User-sidebar  --}}

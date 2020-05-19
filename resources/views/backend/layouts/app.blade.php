@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="{{ asset('backend/css/jquery-confirm.min.css') }}" type="text/css" />
     <link href="{{ asset('backend/css/lightcase.css') }}" rel="stylesheet" type="text/css" />
     {{--  End CSS Tree-View  --}}
+
+    {{-- Toster CSS --}}
+    <link rel="stylesheet" href="{{ asset('backend/toastr/toastr.min.css')}}">
+    {{-- End toster css --}}
     <!-- Font Awesome -->
     <link href="{{ asset('backend/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- NProgress -->
@@ -68,6 +72,10 @@
     <script src="{{ asset('backend/js/lightcase.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/js/jquery-confirm.min.js') }}"></script>
     {{-- End Js-Tree & Lightcase confirm box --}}
+
+    {{-- Toster js --}}
+    <script src="{{ asset('backend/toastr/toastr.min.js') }}"></script>
+    {{-- End Toaster js --}}
     <!-- jquery.inputmask -->
     <script src="{{ asset('backend/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>
     <!-- FastClick -->
