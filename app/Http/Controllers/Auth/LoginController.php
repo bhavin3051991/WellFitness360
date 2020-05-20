@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\Helper;
 use App\User;
 use App\Role;
 use Socialite;
 use Exception;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -45,28 +48,87 @@ class LoginController extends Controller
 		$this->Role = new Role;
 	}
 
-	public function index(Request $request){
+	// public function index(Request $request){
+	// 	$roles = [];
+	// 	$roles = $this->Role->getRoles();
+	// 	if($request->isMethod('get')) {
+	// 		return view('auth.login',compact('roles'));
+	// 	}
+	// 	if($request->isMethod('post')) {
+    //         $credential = $request->only('email','password');
+    //         $findUser = User::where('email',$credential['email'])->count();
+    //         if($findUser){
+    //             $checkVerified = User::where('email',$credential['email'])->where('email_verified',1)->count();
+    //             if($checkVerified){
+    //                 if(Auth::attempt($credential)){
+    //                     if(Auth::user()->role_id === 1){
+    //                         return redirect('/admin');
+    //                     }else if(Auth::user()->role_id === 3){
+    //                         return redirect('/trainer');
+    //                     }else{
+    //                         return redirect('/user');
+    //                     }
+    //                 }else{
+    //                     return back()->with('error_msg', 'Invalid login credential...');
+    //                 }
+    //             }else{
+    //                 return back()->with('error_msg', 'Please check your email & verify account...');
+    //             }
+    //         }else{
+    //             return back()->with('error_msg', 'Please enter registered email...');
+    //         }
+	// 	}
+    // }
+
+    public function index(Request $request){
 		$roles = [];
 		$roles = $this->Role->getRoles();
 		if($request->isMethod('get')) {
 			return view('auth.login',compact('roles'));
 		}
-
 		if($request->isMethod('post')) {
-			$credential = $request->only('email','password');
-			if(Auth::attempt($credential)){
-				if(Auth::user()->role_id === 1){
-					return redirect('/admin');
-				}else if(Auth::user()->role_id === 3){
-					return redirect('/trainer');
-				}else{
-					return redirect('/user');
-				}
-			}else{
-				return back()->with('error_msg', 'Invalid login credential...');
-			}
+            $credential = $request->only('email','password');
+            $findUser = User::where('email',$credential['email'])->count();
+            if($findUser){
+                $checkVerified = User::where('email',$credential['email'])->where('email_verified',1)->count();
+                if($checkVerified){
+                    if(Auth::attempt($credential)){
+                        if(Auth::user()->role_id === 1){
+                            $verifyToken = Str::random(120);
+                            $userData = User::find(Auth::user()->id);
+                            $userData->verified_token = $verifyToken;
+                            $save = $userData->save();
+                            $data = array(
+                                'name' => 'Manoj Prajapati',
+                                'email' => 'manoj@silverwebbuzz.com',
+                                'password' => '123456',
+                                'subject' => "Your WellFitness360 account credentials",
+                                'verifyUrl' => env('APP_URL').'/verifyAccount/',
+                                'verifyToken' => $verifyToken,
+                            );
+
+                            // Send email
+                            Helper::sendMail($data);
+                            $redirect = '/admin';
+                            return response()->json(array('status' => 1,'message'=>'Logine Successfully','redirecturl' => $redirect));
+                        }else if(Auth::user()->role_id === 3){
+                            $redirect = '/trainer';
+                            return response()->json(array('status' => 1,'message'=>'Logine Successfully','redirecturl' => $redirect));
+                        }else{
+                            $redirect = '/user';
+                            return response()->json(array('status' => 1,'message'=>'Logine Successfully','redirecturl' => $redirect));
+                        }
+                    }else{
+                        return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
+                    }
+                }else{
+                    return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));
+                }
+            }else{
+                return response()->json(array('status' => 0,'message'=>'Please enter registered email'));
+            }
 		}
-	}
+    }
 
 	public function redirectToGoogle()
 	{

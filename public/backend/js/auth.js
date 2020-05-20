@@ -26,7 +26,20 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             $("#cover-spin").css("display", "block");
-            form.submit();
+            $.ajax({
+                url  : BASE_URL+'/login',
+                type : 'POST',
+                data : $('#login').serialize(),
+                success : function(response) {
+                    var data = JSON.parse(JSON.stringify(response));
+                    if(data.status){
+                        toastr.success(data.message);
+                        window.location = BASE_URL+data.redirecturl;
+                    }else{
+                        toastr.error(data.message);
+                    }
+                }
+            });
         }
     });
 
@@ -90,7 +103,20 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             $("#cover-spin").css("display", "block");
-            form.submit();
+            $.ajax({
+                url  : BASE_URL+'/register',
+                type : 'POST',
+                data : $('#registerForm').serialize(),
+                success : function(response) {
+                    var data = JSON.parse(JSON.stringify(response));
+                    if(data.status){
+                        toastr.success(data.message);
+                        //window.location.href = BASE_URL + data.redirecturl;
+                    }else{
+                        toastr.error(data.message);
+                    }
+                }
+            });
         }
     });
 

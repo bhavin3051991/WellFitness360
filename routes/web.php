@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
 });
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
+// Facebook Login
 Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook');
 Route::get('auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
+// Instagram Login
 Route::get('login/instagram','Auth\LoginController@redirectToInstagramProvider')->name('instagram.login');
 Route::get('login/instagram/callback', 'Auth\LoginController@instagramProviderCallback')->name('instagram.login.callback');
 
@@ -31,10 +33,13 @@ Route::get('auth/google', 'LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'LoginController@handleGoogleCallback');
 
 
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::match(['GET', 'POST'], 'login', 'LoginController@index')->name('login');
     Route::match(['GET', 'POST'], 'register', 'RegisterController@register')->name('register');
+
+    Route::match(['GET', 'POST'], 'verifyAccount/{token}', 'RegisterController@verifyAccount')->name('verifyAccount');
 });
 //Auth::routes();
 

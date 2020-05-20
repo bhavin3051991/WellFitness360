@@ -16,7 +16,7 @@
                 {{ session()->get('error_msg') }}
             </div>
             @endif
-            <form id="login" method="POST" action="{{ route('login') }}">
+            <form id="login" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <h1>Login</h1>
                 <div class="auth-input">
@@ -61,7 +61,7 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form id="registerForm" name="register" method="POST" action="{{ route('register') }}">
+            <form id="registerForm" name="register" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <h1>Create Account</h1>
                 <div style="padding-bottom: 20px;">

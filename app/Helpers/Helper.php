@@ -1,15 +1,8 @@
 <?php
 
 namespace App\Helpers;
-use DB;
+
 use Illuminate\Support\Facades\Mail;
-use Sendinblue\Mailin;
-use Smsapi\Client\SmsapiHttpClient;
-use Smsapi\Client\Feature\Sms\Bag\SendSmsBag;
-use App\Models\PackagePurchase;
-use App\Models\UserChatAdmin;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use App\Http\Models\RolePermission;
 
 class Helper{
@@ -28,5 +21,22 @@ class Helper{
         }else{
             return false;
         }
+    }
+
+    /**
+     * USE : Send email notification
+     */
+    public static function sendMail($data){
+		$sendMail = Mail::send('email.sendCredential',$data, function ($message) use ($data) {
+            $message->to($data['email'],$data['name']);
+            $message->subject($data['subject']);
+            //$message->from('manoj@silverwebbuzz.com',"WellFitness360");
+			// $pdf = PDF::loadView('admin/invoice/preview1',$data);
+			// $msg->from('krupavyas221@gmail.com', 'Y-Fobs');
+			// $msg->to($data['client_data']->email)->subject('Invoice');
+			// $msg->attachData($pdf->output(),'Invoice_'.rand().'.pdf');
+        });
+
+
     }
 }

@@ -3,8 +3,7 @@ $(window).load(function() {
 });
 
 $(document).ready(function () {
-
-	$("#cover-spin").css("display", "none");
+    $("#cover-spin").css("display", "none");
 
 	/** USE : Delete Modules */
 	$(document).on("click",".deletModule",function() {

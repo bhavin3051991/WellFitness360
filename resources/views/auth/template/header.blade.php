@@ -18,8 +18,14 @@
     <!-- Animate.css -->
     <link href="{{ asset('backend/vendors/animate.css/animate.min.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
+    {{-- Toster CSS --}}
+    <link rel="stylesheet" href="{{ asset('backend/toastr/toastr.min.css')}}">
+    {{-- End toster css --}}
     <link href="{{ asset('backend/build/css/custom.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/auth.css') }}" rel="stylesheet">
+    <script>
+        var BASE_URL = "{{ URL::to('/') }}";
+    </script>
   </head>
 
   <body class="login">
