@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Mail;
+//use Illuminate\Support\Facades\Mail;
 use App\Http\Models\RolePermission;
-
+use Mail;
 class Helper{
 
     /**
@@ -27,7 +27,7 @@ class Helper{
      * USE : Send email notification
      */
     public static function sendMail($data){
-		$sendMail = Mail::send('email.sendCredential',$data, function ($message) use ($data) {
+		    $sendMail = Mail::send('email.sendCredential',$data, function ($message) use ($data) {
             $message->to($data['email'],$data['name']);
             $message->subject($data['subject']);
             //$message->from('manoj@silverwebbuzz.com',"WellFitness360");

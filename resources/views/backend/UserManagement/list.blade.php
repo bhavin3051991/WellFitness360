@@ -72,13 +72,7 @@
 										<td>{{ ucfirst($user['name']) }} {{ ucfirst($user['sur_name']) }}</td>
 										<td>{{ $user['email'] }}</td>
 										<td>{{ $user['contact_no'] }}</td>
-										<td>
-											@if($user['gender'] == 1)
-											Male
-											@else
-											Female
-											@endif
-										</td>
+										<td>{{ $user['gender'] }}</td>
 										<td>
 											@if($user['status'] == 1)
 											<span class="label label-success">Active</span>

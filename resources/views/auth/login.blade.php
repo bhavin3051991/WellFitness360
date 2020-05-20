@@ -17,10 +17,10 @@
             </div>
             @endif
             <form id="login" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_token"  id="csrf-token" value="{{ csrf_token() }}">
                 <h1>Login</h1>
                 <div class="auth-input">
-                    <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Username" required="" />
+                    <input type="text" name="email" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Email Address" required="" />
                 </div>
                 <div class="auth-input">
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required="" />
@@ -62,7 +62,7 @@
         <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form id="registerForm" name="register" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_token" id="csrf-tokens" value="{{ csrf_token() }}">
                 <h1>Create Account</h1>
                 <div style="padding-bottom: 20px;">
                     <select class="form-control" name="roles">
@@ -85,11 +85,11 @@
                 </div>
                 <div class="auth-input">
                     <small class="text-danger">{{ $errors->first('email') }}</small>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" />
+                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" id="emailaddress"/>
                 </div>
                 <div class="auth-input">
                     <small class="text-danger">{{ $errors->first('contact_no') }}</small>
-                    <input type="text" name="contact_no" value="{{ old('contact_no') }}" class="form-control" placeholder="Contact No" />
+                    <input type="text" name="contact_no" value="{{ old('contact_no') }}" class="form-control" placeholder="Contact No" maxlength="10" />
                 </div>
                 <div class="auth-input">
                     <small class="text-danger">{{ $errors->first('password') }}</small>
@@ -99,10 +99,10 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                 <div id="gender" class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                        <input type="radio" name="gender" value="1" data-parsley-multiple="gender" data-parsley-id="12"> &nbsp; Male &nbsp;
+                        <input type="radio" name="gender" value="Male" data-parsley-multiple="gender" data-parsley-id="12"> &nbsp; Male &nbsp;
                     </label>
                     <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                        <input type="radio" name="gender" value="2" data-parsley-multiple="gender"> Female
+                        <input type="radio" name="gender" value="Female" data-parsley-multiple="gender"> Female
                     </label>
                     </div>
                 </div>

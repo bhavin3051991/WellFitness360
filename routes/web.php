@@ -29,16 +29,17 @@ Route::get('login/instagram','Auth\LoginController@redirectToInstagramProvider')
 Route::get('login/instagram/callback', 'Auth\LoginController@instagramProviderCallback')->name('instagram.login.callback');
 
 //Google login
-Route::get('auth/google', 'LoginController@redirectToGoogle');
-Route::get('auth/google/callback', 'LoginController@handleGoogleCallback');
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::match(['GET', 'POST'], 'login', 'LoginController@index')->name('login');
+    Route::match(['GET', 'POST'], 'check-email-not-register', 'LoginController@checkEmailRegister')->name('emailnotregister');
     Route::match(['GET', 'POST'], 'register', 'RegisterController@register')->name('register');
-
+    Route::match(['GET', 'POST'], 'check-email-register', 'RegisterController@EmailCheckRegister')->name('emailregister');
     Route::match(['GET', 'POST'], 'verifyAccount/{token}', 'RegisterController@verifyAccount')->name('verifyAccount');
 });
 //Auth::routes();

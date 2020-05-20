@@ -72,13 +72,7 @@
 										<td>{{ ucfirst($trainer['name']) }} {{ ucfirst($trainer['sur_name']) }}</td>
 										<td>{{ $trainer['email'] }}</td>
 										<td>{{ $trainer['contact_no'] }}</td>
-										<td>
-											@if($trainer['gender'] == 1)
-											Male
-											@else
-											Female
-											@endif
-										</td>
+										<td>{{ $trainer['gender'] }}</td>
 										<td>
 											@if($trainer['status'] == 1)
 											<span class="label label-success">Active</span>

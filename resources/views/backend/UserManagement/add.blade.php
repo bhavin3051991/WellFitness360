@@ -71,10 +71,10 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="1" data-parsley-multiple="gender" @if(old('status') == 1) checked @endif> &nbsp; Male &nbsp;
+                                        <input type="radio" name="gender" value="Male" data-parsley-multiple="gender" @if(old('status') == 'Male') checked @endif> &nbsp; Male &nbsp;
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="2" data-parsley-multiple="gender" @if(old('status') == 2) checked @endif> Female
+                                        <input type="radio" name="gender" value="Female" data-parsley-multiple="gender" @if(old('status') == 'Female') checked @endif> Female
                                         </label>
                                     </div>
                                     <small class="text-danger">{{ $errors->first('gender') }}</small>
