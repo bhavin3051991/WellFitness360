@@ -19,6 +19,8 @@ class SettingController extends Controller {
 		$rules = array(
 			'email' => 'required',
 			'contact_no' => 'nullable|numeric|min:10',
+			//'Sitelogo' => 'required|image|mimes:jpeg,png,jpg',
+			//'Favicon' => 'required|image|mimes:jpeg,png,jpg',
 			'SiteName' => 'required',
 			'StripApiKey' => 'required',
 			'StripSercetKey' => 'required',
@@ -29,7 +31,9 @@ class SettingController extends Controller {
 		$messages = array(
 			'email.required' => 'Email is required.',
 			'contact_no.numeric' => "Please enter valid contact number",
-			'SiteName.required' => 'Please Enter SiteName.',
+			//'SiteName.required' => 'Please Enter SiteName.',
+			//'Sitelogo'=>'Please Select logo image.',
+			'Favicon'=>'Please Select favicon image.',
 			'StripApiKey.required' => 'Please Enter StripApiKey.',
 			'StripSercetKey.required' => 'Please Enter StripSercetKey.',
 			'PaypalApiKey.required' => 'Please Enter PaypalApiKey.',
@@ -39,22 +43,32 @@ class SettingController extends Controller {
 		 if($this->validate($request, $rules, $messages) === FALSE){
 			return redirect()->back()->withInput();
 		}
+		$public_path = 'backend/siteImages';
+		$fullImagePath = null;
 		if($request->hasfile('Sitelogo')){
 			$image = $request->file('Sitelogo');
-			$Sitelogo =  time().$image->getClientOriginalName();
-			$image->move(public_path('siteImages'),$Sitelogo);
+			$name =  time().$image->getClientOriginalName();
+			$image->move($public_path,$name);
+			$fullImagePath = $public_path.'/'.$name;
 		}
+
+		$fullFaviconPath = null;
 		if($request->hasfile('Favicon')){
-			$image1 = $request->file('Favicon');
-			$Favicon =  time().$image1->getClientOriginalName();
-			$image1->move(public_path('siteImages'),$Favicon);
+			$favicon = $request->file('Favicon');
+			$faviconname =  time().$favicon->getClientOriginalName();
+			$favicon->move($public_path,$faviconname);
+			$fullFaviconPath = $public_path.'/'.$faviconname;
 		}
 		$Setting = Settings::first();		
 		$Setting->Email           = trim($request->email);
 		$Setting->PhoneNumber       = trim($request->contact_no);
 		$Setting->SiteName     = trim($request->SiteName);
-		$Setting->SiteLogo    = (!empty($Sitelogo)) ? $Sitelogo : Null;
-		$Setting->Favicon    = (!empty($Favicon)) ? $Favicon : Null;
+		if(isset($request->Sitelogo) && !empty($fullImagePath)){
+			$Setting->SiteLogo        = $fullImagePath;
+		}
+		if(isset($request->Favicon) && !empty($fullFaviconPath)){
+			$Setting->Favicon        = $fullFaviconPath;
+		}
 		$Setting->StripApiKey         = $request->StripApiKey;
 		$Setting->StripSercetKey         = $request->StripSercetKey;
 		$Setting->PaypalApiKey         = $request->PaypalApiKey;

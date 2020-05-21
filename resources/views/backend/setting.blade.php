@@ -72,7 +72,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="Sitelogo">
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<img src="/public/siteImages/{{ $Setting['SiteLogo'] }}" height="30px" width="30px" />
+									<img src="/public/{{ $Setting['SiteLogo'] }}" height="30px" width="30px" />
 								</div>
 							</div>
 							
@@ -88,7 +88,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="Favicon">
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<img src="/public/siteImages/{{ $Setting['Favicon'] }}" height="30px" width="30px" />
+									<img src="/public/{{ $Setting['Favicon'] }}" height="30px" width="30px" />
 								</div>
 							</div>
 							<div class="form-group">

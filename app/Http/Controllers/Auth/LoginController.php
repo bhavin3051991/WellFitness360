@@ -107,20 +107,20 @@ class LoginController extends Controller
 						return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
 					}
 				}else{
-					$verifyToken = Str::random(120);
-					$userData = User::find($findUser[0]->id);
-					$userData->remember_token = $verifyToken;
-					$save = $userData->save();
-					$data = array(
-						'name' => ucfirst(trim($findUser[0]->name)).' '.ucfirst(trim($findUser[0]->surname)),
-						'email' => $findUser[0]->email,
-						'subject' => "WellFit360 Email Verify",
-						'verifyUrl' => env('APP_URL').'/verifyAccount/',
-						'verifyToken' => $verifyToken,
-					);
+					// $verifyToken = Str::random(120);
+					// $userData = User::find($findUser[0]->id);
+					// $userData->remember_token = $verifyToken;
+					// $save = $userData->save();
+					// $data = array(
+					// 	'name' => ucfirst(trim($findUser[0]->name)).' '.ucfirst(trim($findUser[0]->surname)),
+					// 	'email' => $findUser[0]->email,
+					// 	'subject' => "WellFit360 Email Verify",
+					// 	'verifyUrl' => env('APP_URL').'/verifyAccount/',
+					// 	'verifyToken' => $verifyToken,
+					// );
 
-					// Send email
-					Helper::sendMail($data);
+					// // Send email
+					// Helper::sendMail($data);
 					return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));
 				}
 			}else{
