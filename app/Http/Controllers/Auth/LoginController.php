@@ -235,7 +235,8 @@ class LoginController extends Controller
 
 	public function instagramProviderCallback(Request $request)
 	{
-		$code = $request->code;
+		$code = $_GET['code'];
+		//$code = $request->code;
 		if (empty($code)) return redirect()->route('home')->with('error', 'Failed to login with Instagram.');
 
 		$appId = config('services.instagram.client_id');
