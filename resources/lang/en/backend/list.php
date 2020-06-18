@@ -6,6 +6,7 @@ return [
     'add_new' => 'Add New',
     'list' => 'List',
     'fees_management' => 'Fees Management',
+    'change_password' => 'Change Password',
 
     'forms' => [
         'add_new' => 'Add New',
@@ -35,5 +36,8 @@ return [
         'website_url' => 'Website URL',
         'add_fees' => 'Add Fees',
         'edit_fees' => 'Edit Fees',
+        'old_password' => 'Old Password',
+        'new_password' => 'New Password',
+        'confirm_password' => 'Confirm Password'
     ]
 ];

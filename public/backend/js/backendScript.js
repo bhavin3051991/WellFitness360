@@ -534,6 +534,46 @@ $(document).ready(function () {
 		else{
 			return false;
 		}
+    });
+
+    /**
+     * USE : Validate form change password
+     */
+	$('#changePassword').validate({
+		rules: {
+			old_password:{
+                required:true,
+                minlength:6,
+			},
+			new_password:{
+                required:true,
+                minlength:6,
+            },
+            confirm_password:{
+                required:true,
+                minlength:6,
+                equalTo: "#new_password",
+			},
+		},
+		messages: {
+			old_password:{
+                required:'Please enter old password',
+                minlength: 'Required minimum 6 character | digits | special character',
+			},
+			new_password:{
+                required:'Please enter new password',
+                minlength: 'Required minimum 6 character | digits | special character',
+            },
+            confirm_password:{
+                required:'Please enter confirm password',
+                minlength: 'Required minimum 6 character | digits | special character',
+                equalTo: "New password & confirm password does not match",
+			}
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
 	});
 
 });

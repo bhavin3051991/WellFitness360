@@ -3,27 +3,39 @@
         <title>User Crdential</title>
     </head>
     <body>
-        <h3>Hi, {{ $name }}</h3>
-        <p>{{ $subject }}</p>
+        <h3>Hi, {{$data['name']}}</h3>
+        <p>{{$data['subject']}}</p>
         <table border="2">
+
+            @if(isset($data['name']) && !empty($data['name']))
             <tr>
                 <th>Name</th>
-                <td>{{ $name }}
+                <td>{{$data['name']}}</td>
             </tr>
+            @endif
+
+            @if(isset($data['email']) && !empty($data['email']))
             <tr>
                 <th>Email</th>
-                <td>{{ $email }}</td>
+                <td>{{$data['email']}}</td>
             </tr>
+            @endif
+
+            @if(isset($data['password']) && !empty($data['password']))
             <tr>
                 <th>Password</th>
-                <td>{{ $password }}</td>
+                <td>{{$data['password']}}</td>
             </tr>
+            @endif
+
+            @if(isset($data['verifyUrl']) && isset($data['verifyToken']) && !empty($data['verifyUrl']) && !empty($data['verifyToken']))
             <tr>
-                <th>Click Here to verify </th>
+                <th>Click Here to verify : </th>
                 <td>
-                    <a href="{{$verifyUrl}}/{{$verifyToken}}" target="_blank">{{$verifyToken}}</a>
+                    <a href="{{$data['verifyUrl']}}/{{$data['verifyToken']}}" target="_blank">{{$data['verifyToken']}}</a>
                 </td>
             </tr>
+            @endif
         </table>
     </body>
 </html>

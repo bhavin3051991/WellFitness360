@@ -43,12 +43,12 @@ class SettingController extends Controller {
 		 if($this->validate($request, $rules, $messages) === FALSE){
 			return redirect()->back()->withInput();
 		}
-		$public_path = 'backend/siteImages';
+        $public_path = 'backend/images/siteImages';
 		$fullImagePath = null;
 		if($request->hasfile('Sitelogo')){
 			$image = $request->file('Sitelogo');
 			$name =  time().$image->getClientOriginalName();
-			$image->move($public_path,$name);
+			$image->move(public_path($public_path),$name);
 			$fullImagePath = $public_path.'/'.$name;
 		}
 
@@ -56,10 +56,10 @@ class SettingController extends Controller {
 		if($request->hasfile('Favicon')){
 			$favicon = $request->file('Favicon');
 			$faviconname =  time().$favicon->getClientOriginalName();
-			$favicon->move($public_path,$faviconname);
+			$favicon->move(public_path($public_path),$faviconname);
 			$fullFaviconPath = $public_path.'/'.$faviconname;
 		}
-		$Setting = Settings::first();		
+		$Setting = Settings::first();
 		$Setting->Email           = trim($request->email);
 		$Setting->PhoneNumber       = trim($request->contact_no);
 		$Setting->SiteName     = trim($request->SiteName);
@@ -82,6 +82,5 @@ class SettingController extends Controller {
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
 	}
-
 }
 ?>

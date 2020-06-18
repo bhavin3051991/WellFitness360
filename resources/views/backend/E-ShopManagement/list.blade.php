@@ -29,14 +29,16 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 @if(session()->has('success_msg'))
-                <div class="alert alert-success">
-                  {{ session()->get('success_msg') }}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ session()->get('success_msg') }}
                 </div>
                 @endif
 
                 @if(session()->has('error_msg'))
-                <div class="alert alert-danger">
-                  {{ session()->get('error_msg') }}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ session()->get('error_msg') }}
                 </div>
                 @endif
                 <div class="x_title">

@@ -1,5 +1,9 @@
-$(document).ready(function () {
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
+});
 
+$(document).ready(function () {
+    //$("#overlay").fadeIn(300);
 	/**
 	 * USE : Validate login form
 	 */
@@ -34,12 +38,13 @@ $(document).ready(function () {
 			}
 		},
 		submitHandler: function (form) {
-			$("#cover-spin").css("display", "block");
+			$("#overlay").fadeIn(300);
 			$.ajax({
 				url  : BASE_URL+'/login',
 				type : 'POST',
 				data : $('#login').serialize(),
 				success : function(response) {
+                    $("#overlay").fadeOut(300);
 					var data = JSON.parse(JSON.stringify(response));
 					if(data.status){
 						toastr.success(data.message);
@@ -120,16 +125,18 @@ $(document).ready(function () {
 			}
 		},
 		submitHandler: function (form) {
-			$("#cover-spin").css("display", "block");
+			$("#overlay").fadeIn(300);
 			$.ajax({
 				url  : BASE_URL+'/register',
 				type : 'POST',
 				data : $('#registerForm').serialize(),
 				success : function(response) {
+                    $("#overlay").fadeOut(300);
 					var data = JSON.parse(JSON.stringify(response));
 					if(data.status){
-						toastr.success(data.message);
-						//window.location.href = BASE_URL + data.redirecturl;
+                        toastr.success(data.message);
+                        console.log(BASE_URL+data.redirecturl)
+                        window.location = BASE_URL+data.redirecturl;
 					}else{
 						toastr.error(data.message);
 					}
@@ -141,7 +148,7 @@ $(document).ready(function () {
 	/**
 	 * USE : validate forgot password
 	 */
-	$( "#forgotpassword" ).validate({
+	$( "#forgotePassword" ).validate({
 		rules: {
 			email: {
 				required: true,
@@ -153,6 +160,26 @@ $(document).ready(function () {
 				required: 'Please enter email',
 				email: 'Please enter valid email',
 			}
+        },
+        submitHandler: function (form) {
+            $(".forgotr-btn").attr("disabled", true);
+            $("#overlay").fadeIn(300);
+			$.ajax({
+				url  : BASE_URL+'/forgetPassword',
+				type : 'POST',
+				data : $('#forgotePassword').serialize(),
+				success : function(response) {
+                    $("#overlay").fadeOut(300);
+                    $(".forgotr-btn").attr("disabled", false);
+					var data = JSON.parse(JSON.stringify(response));
+					if(data.status){
+                        toastr.success(data.message);
+
+					}else{
+						toastr.error(data.message);
+					}
+				}
+			});
 		}
 	});
 
@@ -181,6 +208,26 @@ $(document).ready(function () {
 				minlength: 'Please enter atleast 6 digits',
 				equalTo: "Password and confirm password does not match",
 			}
-		},
+        },
+        submitHandler: function (form) {
+            $("#overlay").fadeIn(300);
+            $(".reset-pwd-btn").attr("disabled", true);
+			$.ajax({
+				url  : BASE_URL+'/resetPassword',
+				type : 'POST',
+				data : $('#resetPassword').serialize(),
+				success : function(response) {
+                    $(".reset-pwd-btn").attr("disabled", false);
+                    $("#overlay").fadeOut(300);
+					var data = JSON.parse(JSON.stringify(response));
+					if(data.status){
+                        toastr.success(data.message);
+                        window.location = BASE_URL + data.redirecturl;
+					}else{
+						toastr.error(data.message);
+					}
+				}
+			});
+		}
 	});
 });

@@ -9,7 +9,7 @@ use App\Http\Models\Eshop;
 class EshopController extends Controller
 {
     public function __construct(){
-		$this->Eshop = new Eshop;
+        $this->Eshop = new Eshop;
     }
 
     /**
@@ -62,7 +62,7 @@ class EshopController extends Controller
             if($request->hasfile('Image')){
                 $image = $request->file('Image');
                 $name =  time().$image->getClientOriginalName();
-                $image->move($public_path,$name);
+                $image->move(public_path($public_path),$name);
                 $fullImagePath = $public_path.'/'.$name;
             }
 
@@ -134,7 +134,7 @@ class EshopController extends Controller
         if($request->hasfile('Image')){
             $image = $request->file('Image');
             $name =  time().$image->getClientOriginalName();
-            $image->move($public_path,$name);
+            $image->move(public_path($public_path),$name);
             $fullImagePath = $public_path.'/'.$name;
         }
 
@@ -165,13 +165,13 @@ class EshopController extends Controller
     public function destroy($id)
     {
         $Eshop = Eshop::find($id)->delete();
-    	if($Eshop){
-    		$message = 'Shop deleted successfully..';
-    		$status = true;
-    	}else{
-    		$message = 'Please try again';
-    		$status = false;
-    	}
-    	return response()->json(['status' => $status,'message' => $message]);
+        if($Eshop){
+            $message = 'Shop deleted successfully..';
+            $status = true;
+        }else{
+            $message = 'Please try again';
+            $status = false;
+        }
+        return response()->json(['status' => $status,'message' => $message]);
     }
 }

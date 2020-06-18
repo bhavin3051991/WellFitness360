@@ -11,6 +11,7 @@ use App\Role;
 use Socialite;
 use Exception;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 
@@ -46,39 +47,7 @@ class LoginController extends Controller
 		$this->middleware('guest')->except('logout');
 		$user = new User;
 		$this->Role = new Role;
-	}
-
-	// public function index(Request $request){
-	// 	$roles = [];
-	// 	$roles = $this->Role->getRoles();
-	// 	if($request->isMethod('get')) {
-	// 		return view('auth.login',compact('roles'));
-	// 	}
-	// 	if($request->isMethod('post')) {
-	//         $credential = $request->only('email','password');
-	//         $findUser = User::where('email',$credential['email'])->count();
-	//         if($findUser){
-	//             $checkVerified = User::where('email',$credential['email'])->where('email_verified',1)->count();
-	//             if($checkVerified){
-	//                 if(Auth::attempt($credential)){
-	//                     if(Auth::user()->role_id === 1){
-	//                         return redirect('/admin');
-	//                     }else if(Auth::user()->role_id === 3){
-	//                         return redirect('/trainer');
-	//                     }else{
-	//                         return redirect('/user');
-	//                     }
-	//                 }else{
-	//                     return back()->with('error_msg', 'Invalid login credential...');
-	//                 }
-	//             }else{
-	//                 return back()->with('error_msg', 'Please check your email & verify account...');
-	//             }
-	//         }else{
-	//             return back()->with('error_msg', 'Please enter registered email...');
-	//         }
-	// 	}
-	// }
+    }
 
 	public function index(Request $request){
 		$roles = [];
@@ -107,20 +76,6 @@ class LoginController extends Controller
 						return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
 					}
 				}else{
-					// $verifyToken = Str::random(120);
-					// $userData = User::find($findUser[0]->id);
-					// $userData->remember_token = $verifyToken;
-					// $save = $userData->save();
-					// $data = array(
-					// 	'name' => ucfirst(trim($findUser[0]->name)).' '.ucfirst(trim($findUser[0]->surname)),
-					// 	'email' => $findUser[0]->email,
-					// 	'subject' => "WellFit360 Email Verify",
-					// 	'verifyUrl' => env('APP_URL').'/verifyAccount/',
-					// 	'verifyToken' => $verifyToken,
-					// );
-
-					// // Send email
-					// Helper::sendMail($data);
 					return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));
 				}
 			}else{
@@ -129,15 +84,12 @@ class LoginController extends Controller
 		}
 	}
 
-	public function redirectToGoogle()
-	{
+	public function redirectToGoogle(){
 		return Socialite::driver('google')->redirect();
 	}
 
-	public function handleGoogleCallback()
-	{
+	public function handleGoogleCallback(){
 		try {
-
 			$googleuser = Socialite::driver('google')->stateless()->user();
 			$finduser = User::where('google_id', $googleuser->id)->first();
 
@@ -177,8 +129,7 @@ class LoginController extends Controller
 	 *
 	 * @return void
 	 */
-	public function redirectToFacebook()
-	{
+	public function redirectToFacebook(){
 		return Socialite::driver('facebook')->redirect();
 	}
 
@@ -188,8 +139,7 @@ class LoginController extends Controller
 	 *
 	 * @return void
 	 */
-	public function handleFacebookCallback()
-	{
+	public function handleFacebookCallback(){
 		try {
 			$FacebookUser = Socialite::driver('facebook')->stateless()->user();
 			$finduser = User::where('facebook_id', $FacebookUser->id)->first();
@@ -226,15 +176,13 @@ class LoginController extends Controller
 		}
 	}
 
-	public function redirectToInstagramProvider()
-	{
+	public function redirectToInstagramProvider(){
 		$appId = config('services.instagram.client_id');
 		$redirectUri = urlencode(config('services.instagram.redirect'));
 		return redirect()->to("https://api.instagram.com/oauth/authorize?app_id={$appId}&redirect_uri={$redirectUri}&scope=user_profile,user_media&response_type=code");
 	}
 
-	public function instagramProviderCallback(Request $request)
-	{
+	public function instagramProviderCallback(Request $request){
 		$code = $_GET['code'];
 		//$code = $request->code;
 		if (empty($code)) return redirect()->route('home')->with('error', 'Failed to login with Instagram.');
@@ -272,23 +220,58 @@ class LoginController extends Controller
 		$content = $response->getBody()->getContents();
 		$oAuth = json_decode($content);
 
-		print_r($oAuth);die;
-
 		// Get instagram user name
 		$username = $oAuth->username;
 
 		// do your code here
-	}
+    }
+
+    /**
+     * USE : Reset password
+     */
+    public function changePassword(Request $request){
+        if(Auth::user() && Auth::user()){
+            $method = $request->method();
+            if($request->isMethod('get')) {
+                return view('backend.changePassword');
+            }
+
+            if($request->isMethod('post')) {
+                $userData = Helper::getUserData(Auth::user()->id);
+
+                if(Hash::check($request->old_password,$userData->password)){
+                    if($request->new_password == $request->confirm_password){
+                        $user = User::find(Auth::user()->id);
+                        $user->password  =  bcrypt($request->new_password);
+                        $user->save();
+                        if($user){
+                            Auth::logout();
+                            return redirect('login')->with('success_msg', 'Password has been changed successfully....!');
+                        }else{
+                            return back()->with('error_msg', 'Please try again.....');
+                        }
+                    }else{
+                        return redirect('changePassword')->with('error_msg', 'New password & Confirm Password does not match!!!!!');
+                    }
+                }else{
+                    return redirect('changePassword')->with('error_msg', 'Old password incorrect!!!!!');
+                }
+            }
+        }else{
+            return redirect('login');
+        }
+    }
 
 	public function checkEmailRegister(Request $r){
 		$email = $r->email;
 		$user = User::where('email',$email)->count();
 		if($user){
-			echo 'true';	
+			echo 'true';
 		}else{
 			echo 'false';
 		}
-	}
+    }
+
 
 	public function logout() {
 		Auth::logout();

@@ -32,8 +32,6 @@ Route::get('login/instagram/callback', 'Auth\LoginController@instagramProviderCa
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
-
-
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     Route::match(['GET', 'POST'], 'login', 'LoginController@index')->name('login');
@@ -41,6 +39,9 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::match(['GET', 'POST'], 'register', 'RegisterController@register')->name('register');
     Route::match(['GET', 'POST'], 'check-email-register', 'RegisterController@EmailCheckRegister')->name('emailregister');
     Route::match(['GET', 'POST'], 'verifyAccount/{token}', 'RegisterController@verifyAccount')->name('verifyAccount');
+    Route::match(['GET', 'POST'], 'changePassword', 'LoginController@changePassword')->name('changePassword');
+    Route::match(['GET', 'POST'], 'forgetPassword', 'ForgotPasswordController@forgetPassword')->name('forgetPassword');
+    Route::match(['GET', 'POST'], 'resetPassword', 'ForgotPasswordController@resetPassword')->name('resetPassword');
 });
 //Auth::routes();
 

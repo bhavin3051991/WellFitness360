@@ -36,13 +36,15 @@
                   </ul>
                   <div class="clearfix"></div>
                   @if(session()->has('success_msg'))
-                  <div class="alert alert-success">
+                  <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     {{ session()->get('success_msg') }}
                   </div>
                   @endif
 
                   @if(session()->has('error_msg'))
-                  <div class="alert alert-danger">
+                  <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     {{ session()->get('error_msg') }}
                   </div>
                   @endif
@@ -89,7 +91,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.address')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="Address" class="form-control" rows="3" placeholder="Enter address">@if(isset($contact_us->Address) && !empty($contact_us->Address)){{$contact_us->Address}} @endif</textarea>
+                            <textarea name="Address" class="form-control" rows="3" placeholder="Enter address">@if(isset($contact_us->Address) && !empty($contact_us->Address)){{$contact_us->Address}}@endif</textarea>
                         </div>
                     </div>
 
@@ -97,7 +99,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="Description" class="resizable_textarea form-control" placeholder="Enter description">@if(isset($contact_us->Description) && !empty($contact_us->Description)) {{ $contact_us->Description }} @endif</textarea>
+                            <textarea name="Description" class="resizable_textarea form-control" placeholder="Enter description">@if(isset($contact_us->Description) && !empty($contact_us->Description)){{$contact_us->Description}}@endif</textarea>
                         </div>
                     </div>
                     <div class="ln_solid"></div>

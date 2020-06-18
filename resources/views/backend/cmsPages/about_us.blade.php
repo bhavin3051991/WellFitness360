@@ -36,13 +36,15 @@
                   </ul>
                   <div class="clearfix"></div>
                   @if(session()->has('success_msg'))
-                  <div class="alert alert-success">
+                  <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     {{ session()->get('success_msg') }}
                   </div>
                   @endif
 
                   @if(session()->has('error_msg'))
-                  <div class="alert alert-danger">
+                  <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     {{ session()->get('error_msg') }}
                   </div>
                   @endif
@@ -63,14 +65,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.short_description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="ShortDescription" class="form-control" rows="3" placeholder="Enter short description">@if(isset($about_us->ShortDescription) && !empty($about_us->ShortDescription)) {{ $about_us->ShortDescription }} @endif</textarea>
+                            <textarea name="ShortDescription" class="form-control" rows="3" placeholder="Enter short description">@if(isset($about_us->ShortDescription) && !empty($about_us->ShortDescription)){{$about_us->ShortDescription}}@endif</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">@lang('backend/list.forms.long_description')<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea name="LongDescription" class="form-control" rows="3" placeholder="Enter long description">@if(isset($about_us->LongDescription) && !empty($about_us->LongDescription)) {{ $about_us->LongDescription }} @endif</textarea>
+                            <textarea name="LongDescription" class="form-control" rows="3" placeholder="Enter long description">@if(isset($about_us->LongDescription) && !empty($about_us->LongDescription)){{$about_us->LongDescription}}@endif</textarea>
                         </div>
                     </div>
                     <div class="form-group">

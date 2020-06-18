@@ -8,11 +8,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use App\Helpers\Helper;
 use App\User;
-use DateTime;
-use Str;
+
 
 class RegisterController extends Controller
 {
@@ -47,56 +46,9 @@ class RegisterController extends Controller
 		$this->User = new User;
 	}
 
-	/**
-	 * USE : Register user
-	 */
-	// public function register(Request $request){
-	//     if ($request->isMethod('get')) {
-	//         return redirect('login');
-	//     }
-
-	//     if ($request->isMethod('post')) {
-	//         $rules = array(
-	//             'roles' => 'required',
-	//             'name' => 'required',
-	//             'surname' => 'required',
-	//             'email' => 'required|email|unique:users',
-	//             'contact_no' => 'nullable|numeric|min:10',
-	//             'password' => 'required',
-	//             'gender' => 'required',
-	//         );
-	//         $messages = array(
-	//             'roles.required' => 'Please select type of register.',
-	//             'name.required' => 'Name is required.',
-	//             'surname.required' => 'Please Enter Last Name',
-	//             'email.required' => 'Please Enter Email',
-	//             'email.email' => "Please Enter Valid Email",
-	//             'email.unique' => "Email Alredy Exist",
-	//             'contact_no.numeric' => "Please enter valid contact number",
-	//             'password.required' => 'Password is required',
-	//             'gender.required' => 'Please select gender',
-	//         );
-
-	//         if($this->validate($request, $rules, $messages) === FALSE){
-	//             return redirect()->back()->withInput();
-	//         }
-	//         $this->User->role_id        = $request->roles;
-	//         $this->User->name           = trim($request->name);
-	//         $this->User->sur_name       = trim($request->surname);
-	//         $this->User->email          = trim($request->email);
-	//         $this->User->contact_no     = trim($request->contact_no);
-	//         $this->User->password       = bcrypt($request->password);
-	//         $this->User->gender         = $request->gender;
-	//         $result = $this->User->save();  // save data
-
-	//         if($result){
-	//             return redirect('login')->with('success_msg', 'Your Account registerd successfully.');
-	//         }else{
-	//             return back()->with('error_msg', 'Problem was error accured.. Please try again..');
-	//         }
-	//     }
-	// }
-
+    /**
+     * USE : register new account
+     */
 	public function register(Request $request){
 		if ($request->isMethod('get')) {
 			return redirect('login');
@@ -117,20 +69,20 @@ class RegisterController extends Controller
 				$this->User->contact_no     = trim($request->contact_no);
 				$this->User->password       = bcrypt($request->password);
 				$this->User->gender         = $request->gender;
-				$this->User->remember_token = $remember_token;
+				$this->User->verified_token = $remember_token;
 				$result = $this->User->save();  // save data
 				if($result){
-					// $data = array(
-					// 	'name' => ucfirst(trim($request->name)).' '.ucfirst(trim($request->surname)),
-					// 	'email' => trim($request->email),
-					// 	'password' => trim($request->password),
-					// 	'subject' => "WellFit360 Email Verify",
-					// 	'verifyUrl' => env('APP_URL').'/verifyAccount/',
-					// 	'verifyToken' => $remember_token,
-					// );
-					// // Send email
-					// Helper::sendMail($data);
-					return response()->json(array('status' => 1,'message'=>'Your regression has been successfully completed.You will be sent a link in your registered email to verify your account from there'));
+					$data = array(
+						'name' => ucfirst(trim($request->name)).' '.ucfirst(trim($request->surname)),
+						'email' => trim($request->email),
+						'password' => trim($request->password),
+						'subject' => "WellFit360 Account Verify",
+						'verifyUrl' => env('APP_URL').'/verifyAccount/',
+						'verifyToken' => $remember_token,
+					);
+					// Send email
+                    $sendMail = Helper::sendMail($data,'email.sendCredential');
+					return response()->json(array('status' => 1, 'redirect_url' => env('APP_URL').'/login', 'message'=>'Your regression has been successfully completed.You will be sent a link in your registered email to verify your account from there'));
 				}else{
 					return response()->json(array('status' => 0,'message'=>'Please try again..'));
 				}
@@ -182,29 +134,46 @@ class RegisterController extends Controller
 	 */
 	public function verifyAccount($token){
 		if($token){
-			$findUser = User::where('verified_token',$token)->first();
-			$datetime1 = strtotime($findUser['updated_at']);
-			$datetime2 = strtotime(date('Y-m-d H:i:s'));
-			$interval  = abs($datetime2 - $datetime1);
-			$minutes   = round($interval / 60);
-			if($minutes <= 10){
-				if($findUser){
-					$findUser->remember_token = null;
-					$findUser->email_verified = 1;
-					$save = $findUser->save();
-					if($save){
-						return redirect('/login')->with('success_msg', 'Your account verified successfully.');
-					}else{
-						return redirect('/login')->with('error_msg', 'Please try again...');
-					}
-				}else{
-					return redirect('/login')->with('error_msg', 'Verification link has been expired....');
-				}
-			}else{
-				$findUser->remember_token = null;
-				$save = $findUser->save();
-				return redirect('/login')->with('error_msg', 'Verification link has been expired....');;
-			}
+            $findUser = User::where('verified_token',$token)->first();
+            if($findUser){
+                $datetime1 = strtotime($findUser['updated_at']);
+                $datetime2 = strtotime(date('Y-m-d H:i:s'));
+                $interval  = abs($datetime2 - $datetime1);
+                $minutes   = round($interval / 60);
+                if($minutes <= 10){
+                    if($findUser){
+                        $findUser->remember_token = null;
+                        $findUser->email_verified = 1;
+                        $findUser->email_verified_at = date('Y-m-d h:i:s');
+                        $save = $findUser->save();
+                        if($save){
+                            return redirect('/login')->with('success_msg', 'Your account verified successfully.');
+                        }else{
+                            return redirect('/login')->with('error_msg', 'Please try again...');
+                        }
+                    }else{
+                        return redirect('/login')->with('error_msg', 'Verification link has been expired....');
+                    }
+                }else{
+                    $verifyToken = Str::random(120);
+                    $findUser->remember_token = null;
+                    $findUser->verified_token = $verifyToken;
+                    $save = $findUser->save();
+                    // After verification link expired then sent mail reverify account
+                    $data = array(
+                        'name' => ucfirst(trim($findUser->name)).' '.ucfirst(trim($findUser->surname)),
+                        'email' => trim($findUser->email),
+                        'subject' => "WellFit360 Account Verify",
+                        'verifyUrl' => env('APP_URL').'/verifyAccount/',
+                        'verifyToken' => $verifyToken,
+                    );
+                    // Send email
+                    $sendMail = Helper::sendMail($data,'email.sendCredential');
+                    return redirect('/login')->with('error_msg', 'Due to the expired link of your email verification, you can verify the account with the new link sent to you in the email. So please check your email.');;
+                }
+            }else{
+                return redirect('/login')->with('error_msg', 'Verification link has been expired....');
+            }
 		}
 	}
 }
