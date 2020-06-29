@@ -47,7 +47,7 @@ class LoginController extends Controller
 		$this->middleware('guest')->except('logout');
 		$user = new User;
 		$this->Role = new Role;
-    }
+	}
 
 	public function index(Request $request){
 		$roles = [];
@@ -203,6 +203,10 @@ class LoginController extends Controller
 				'code' => $code,
 			]
 		]);
+		echo "<pre>";
+		print_r($response);
+		echo "</pre>";
+		exit;
 
 		if ($response->getStatusCode() != 200) {
 			return redirect()->route('home')->with('error', 'Unauthorized login to Instagram.');
@@ -224,43 +228,42 @@ class LoginController extends Controller
 		$username = $oAuth->username;
 
 		// do your code here
-    }
+	}
 
-    /**
-     * USE : Reset password
-     */
-    public function changePassword(Request $request){
-        if(Auth::user() && Auth::user()){
-            $method = $request->method();
-            if($request->isMethod('get')) {
-                return view('backend.changePassword');
-            }
+	/**
+	 * USE : Reset password
+	 */
+	public function changePassword(Request $request){
+		if(Auth::user() && Auth::user()){
+			$method = $request->method();
+			if($request->isMethod('get')) {
+				return view('backend.changePassword');
+			}
 
-            if($request->isMethod('post')) {
-                $userData = Helper::getUserData(Auth::user()->id);
-
-                if(Hash::check($request->old_password,$userData->password)){
-                    if($request->new_password == $request->confirm_password){
-                        $user = User::find(Auth::user()->id);
-                        $user->password  =  bcrypt($request->new_password);
-                        $user->save();
-                        if($user){
-                            Auth::logout();
-                            return redirect('login')->with('success_msg', 'Password has been changed successfully....!');
-                        }else{
-                            return back()->with('error_msg', 'Please try again.....');
-                        }
-                    }else{
-                        return redirect('changePassword')->with('error_msg', 'New password & Confirm Password does not match!!!!!');
-                    }
-                }else{
-                    return redirect('changePassword')->with('error_msg', 'Old password incorrect!!!!!');
-                }
-            }
-        }else{
-            return redirect('login');
-        }
-    }
+			if($request->isMethod('post')) {
+				$userData = Helper::getUserData(Auth::user()->id);
+				if(Hash::check($request->old_password,$userData->password)){
+					if($request->new_password == $request->confirm_password){
+						$user = User::find(Auth::user()->id);
+						$user->password  =  bcrypt($request->new_password);
+						$user->save();
+						if($user){
+							Auth::logout();
+							return redirect('login')->with('success_msg', 'Password has been changed successfully....!');
+						}else{
+							return back()->with('error_msg', 'Please try again.....');
+						}
+					}else{
+						return redirect('changePassword')->with('error_msg', 'New password & Confirm Password does not match!!!!!');
+					}
+				}else{
+					return redirect('changePassword')->with('error_msg', 'Old password incorrect!!!!!');
+				}
+			}
+		}else{
+			return redirect('login');
+		}
+	}
 
 	public function checkEmailRegister(Request $r){
 		$email = $r->email;
@@ -270,7 +273,7 @@ class LoginController extends Controller
 		}else{
 			echo 'false';
 		}
-    }
+	}
 
 
 	public function logout() {

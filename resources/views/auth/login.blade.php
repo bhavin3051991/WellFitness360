@@ -26,14 +26,14 @@
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required="" />
                 </div>
                 <div class="auth-input">
+                    <a href="{{ ROUTE('instagram.login') }}" class="btn btn-lg btn-primary btn-block">
+                        <strong>Login With Instagram</strong>
                     {{-- <a class="btn btn-default submit" href="">Log in</a> --}}
                     <button type="submit" class="btn btn btn-success login-btn">Login</button>
                     <a class="reset_pass" href="{{ route('forgetPassword') }}">Forgot password?</a>
                     {{--  <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-primary btn-block">
                         <strong>Login With Facebook</strong>
                     </a>
-                    <a href="{{ ROUTE('instagram.login') }}" class="btn btn-lg btn-primary btn-block">
-                        <strong>Login With Instagram</strong>
                     </a>
                     <a href="{{ url('auth/google') }}" class="btn btn-lg btn-primary btn-block">
                         <strong>Login With Google</strong>

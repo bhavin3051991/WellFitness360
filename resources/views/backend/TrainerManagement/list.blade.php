@@ -77,9 +77,9 @@
 											@if($trainer['status'] == 1)
 											<span class="label label-success">Active</span>
 											@elseif($trainer['status'] == 2)
-											<span class="label label-success">InActive</span>
+											<span class="label label-danger">Inactive</span>
 											@else
-											<span class="label label-danger">Pending</span>
+											<span class="label label-warning">Pending</span>
 											@endif
 										</td>
 										<td>

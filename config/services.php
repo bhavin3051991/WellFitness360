@@ -41,13 +41,10 @@ return [
     ],
     'instagram' => [
        // 'client_id' => '1100946246936095',//env('INSTAGRAM_CLIENT_ID','1100946246936095'),
-        'client_id' => '573923219924394',//env('INSTAGRAM_CLIENT_ID','1100946246936095'),
+        'client_id' => '361223528173308',//env('INSTAGRAM_CLIENT_ID','1100946246936095'),
         //'client_secret' => '5c98402695d81013722b5fd84238e250',//env('INSTAGRAM_CLIENT_SECRET','5c98402695d81013722b5fd84238e250'),
-        'client_secret' => 'aeeef801bda4ce0965cc0b1994dbc368',//env('INSTAGRAM_CLIENT_SECRET','5c98402695d81013722b5fd84238e250'),
-        'redirect' => 'https://localhost:3300/public/index.php/login/instagram/callback',//env('INSTAGRAM_REDIRECT_URI','http://localhost:8000/login/instagram/callback'),
+        'client_secret' => '34090222e244da2e07857da321550694',//env('INSTAGRAM_CLIENT_SECRET','5c98402695d81013722b5fd84238e250'),
+        'redirect' => 'https://localhost:8000/login/instagram/callback'),
    ],
-
-
-
-
 ];
+
