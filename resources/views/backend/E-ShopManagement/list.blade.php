@@ -95,9 +95,9 @@
                               @endif
                             </td>
                             <td>
-                                <a href="{{ route('E_shopManagement.edit',$shop['ID']) }}"><i class="fa fa-edit"></i> Edit</a>
+                                <a href="{{ route('E_shopManagement.edit',$shop['ID']) }}"><i class="fa fa-edit"></i></a>
                                 <a href="javascript:void(0);" data-id="{{ $shop['ID'] }}" class="deleteShop">
-                                    <i class="fa fa-trash"></i> Delete
+                                    <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

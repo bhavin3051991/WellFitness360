@@ -7,6 +7,7 @@ return [
     'list' => 'List',
     'fees_management' => 'Fees Management',
     'change_password' => 'Change Password',
+    'user_trainer_activity' => 'User And Trainer Activity',
 
     'forms' => [
         'add_new' => 'Add New',

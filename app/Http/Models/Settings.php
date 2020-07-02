@@ -9,5 +9,4 @@ class Settings extends Model
     protected $table = 'settings';
     protected $primaryKey = 'ID';
     protected $html = '';
-    public $timestamps = false;
 }

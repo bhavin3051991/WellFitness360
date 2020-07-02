@@ -51,10 +51,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 // If redirect admin
 Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function () {
     Route::get('/admin', 'DashboardController@index')->name('admin');
-    Route::get('/user', 'DashboardController@index')->name('user');
-    Route::get('/trainer', 'DashboardController@index')->name('trainer');
-    //Route::get('/admin', 'DashboardController@index')->name('admin');
+    // Route::get('/user', 'DashboardController@index')->name('user');
+    // Route::get('/trainer', 'DashboardController@index')->name('trainer');
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('user-trainer-activity');
+    Route::post('/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('save-user-trainer-activity');
 
     //Module management
     Route::get('/module/delete/{id}', 'ModulesController@destroy');
@@ -66,6 +67,7 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 
     // Trainer Management
     Route::get('/trainerManagement/delete/{id}', 'TrainerController@destroy');
+    Route::get('/trainerManagement/apporved/{id}', 'TrainerController@apporved');
     Route::resource('trainerManagement', 'TrainerController');
 
     // User Management

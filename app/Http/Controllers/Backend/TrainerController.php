@@ -163,4 +163,16 @@ class TrainerController extends Controller
 		}
 		return response()->json(['status' => $status]);
 	}
+
+	public function apporved($id)
+	{
+		$updatetrainer = User::find($id);        
+		$updatetrainer->tranier_approved = "1";
+		$result = $updatetrainer->save(); 
+		if($result){
+			return redirect('trainerManagement')->with('success_msg', 'Trainer Approved successfully.');
+		}else{
+			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
+		}
+	}
 }
