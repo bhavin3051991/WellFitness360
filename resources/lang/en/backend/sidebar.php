@@ -20,6 +20,7 @@ return [
     'roles_permission' => 'Roles & Permissions',
     'trainner_management' => 'Trainer Management',
     'user_management' => 'User Management',
+    'trainer_categories_management' => 'Trainer Categories',
     'categories_management' => 'Categories Management',
     'cms_pages' => 'CMS Pages',
     'about_us' => 'About-as',

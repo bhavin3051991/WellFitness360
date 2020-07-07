@@ -14,7 +14,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-                <h3>Modules</h3>
+                <h3>@lang('backend/sidebar.trainer_categories_management')</h3>
             </div>
             <div class="title_right">
               <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -61,7 +61,7 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <a href="{{ route('categoriesManagement.create') }}"<button type="button" class="btn btn-success">Add New Categories</button></a>
+                    <a href="{{ route('trainercategoriesManagement.create') }}"<button type="button" class="btn btn-success">Add New Categories</button></a>
                     <div id="tree_1" class="tree-demo">
                         {{!!$showcat!!}}
                     </div>

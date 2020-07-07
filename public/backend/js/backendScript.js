@@ -318,7 +318,7 @@ $(document).ready(function () {
 					edit: {
 						btnClass: 'btn-green',
 						action:function(){
-							location.href = BASE_URL + '/categoriesManagement/edit/' + id;
+							location.href = BASE_URL + '/trainercategoriesManagement/edit/' + id;
 						}
 					},
 					delete:{
@@ -333,7 +333,7 @@ $(document).ready(function () {
 
 								buttons: {
 									confirm: function (){
-										location.href = BASE_URL + '/categoriesManagement/delete/' + id;
+										location.href = BASE_URL + '/trainercategoriesManagement/delete/' + id;
 									},
 									cancel: function () {
 									},
@@ -612,4 +612,5 @@ $(document).ready(function () {
 			toastr.error("Please Select at list one user or trainer.");
 		}
 	});
+
 });

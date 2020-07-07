@@ -74,11 +74,16 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
     Route::get('/UserManagement/delete/{id}', 'UserController@destroy');
     Route::resource('UserManagement', 'UserController');
 
+    // Trainer Categories Management
+    Route::get('/trainercategoriesManagement/edit/{id}', 'TrainerCategoriesController@edit');
+    Route::post('/trainercategoriesManagement/update/{id}', 'TrainerCategoriesController@update')->name('trainercategoriesManagement.update');
+    Route::get('/trainercategoriesManagement/delete/{id}', 'TrainerCategoriesController@destroy');
+    Route::resource('trainercategoriesManagement', 'TrainerCategoriesController');
+
     // Categories Management
-    Route::get('/categoriesManagement/edit/{id}', 'CategoriesController@edit');
-    Route::post('/categoriesManagement/update/{id}', 'CategoriesController@update')->name('categoriesManagement.update');
-    Route::get('/categoriesManagement/delete/{id}', 'CategoriesController@destroy');
+
     Route::resource('categoriesManagement', 'CategoriesController');
+
 
     // CMS-Pages Managment
     Route::match(['GET', 'POST'], 'cms_aboutus', 'CMSPagesController@aboutUs')->name('cms_aboutus');

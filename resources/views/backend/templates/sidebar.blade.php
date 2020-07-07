@@ -70,10 +70,17 @@ $RolePermission = [];
 						<i class="fa fa-user"></i>@lang('backend/sidebar.user_management')
 						</a>
 					</li>
-					{{--  Category Management  --}}
+					{{-- Category Management  --}}
 					<li class="">
 						<a href="{{ route('categoriesManagement.index') }}">
 						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
+						</a>
+					</li>
+
+					{{--  Trainer Category Management  --}}
+					<li class="">
+						<a href="{{ route('trainercategoriesManagement.index') }}">
+						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.trainer_categories_management')
 						</a>
 					</li>
 					<li class="">
