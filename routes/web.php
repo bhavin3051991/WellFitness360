@@ -81,9 +81,12 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
     Route::resource('trainercategoriesManagement', 'TrainerCategoriesController');
 
     // Categories Management
-
+    Route::get('/categoriesManagement/delete/{id}', 'CategoriesController@destroy');
     Route::resource('categoriesManagement', 'CategoriesController');
 
+    // Sub Categories Management
+    Route::get('/subcategoriesManagement/delete/{id}', 'SubCategoriesController@destroy');
+    Route::resource('subcategoriesManagement', 'SubCategoriesController');
 
     // CMS-Pages Managment
     Route::match(['GET', 'POST'], 'cms_aboutus', 'CMSPagesController@aboutUs')->name('cms_aboutus');

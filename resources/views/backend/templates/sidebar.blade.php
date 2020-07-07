@@ -71,10 +71,20 @@ $RolePermission = [];
 						</a>
 					</li>
 					{{-- Category Management  --}}
-					<li class="">
-						<a href="{{ route('categoriesManagement.index') }}">
-						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
-						</a>
+					<li class="{{ (request()->is('dashboard'))? 'active': ''  }}">
+						<a><i class="fa fa-home"></i>@lang('backend/sidebar.categories') <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li class="">
+								<a href="{{ route('categoriesManagement.index') }}">
+								<i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
+								</a>
+							</li>
+							<li class="">
+								<a href="{{ route('subcategoriesManagement.index') }}">
+								<i class="fa fa-list-ul"></i>@lang('backend/sidebar.sub_categories_management')
+								</a>
+							</li>
+						</ul>
 					</li>
 
 					{{--  Trainer Category Management  --}}

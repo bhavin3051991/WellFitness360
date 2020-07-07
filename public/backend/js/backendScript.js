@@ -613,4 +613,182 @@ $(document).ready(function () {
 		}
 	});
 
+	$('#categoreiesForm').validate({
+		rules: {
+			categories_name:{
+				required:true,
+			},
+			categories_desc:{
+				required:true,
+			},
+			categories_image:{
+				required:true,
+				extension: "JPG|JPEG|PNG",
+			},
+		},
+		messages: {
+			categories_name:{
+				required: 'Please enter categories name.',
+			},
+			categories_desc:{
+				required: 'Please enter categories description.',
+			},
+			categories_image:{
+				required: 'Please select image.',
+				extension: "Allowed only JPG|JPEG|PNG files extension.",
+			},
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+
+	$('#editcategoreiesForm').validate({
+		rules: {
+			categories_name:{
+				required:true,
+			},
+			categories_desc:{
+				required:true,
+			},
+			categories_image:{
+				extension: "JPG|JPEG|PNG",
+			},
+		},
+		messages: {
+			categories_name:{
+				required: 'Please enter categories name.',
+			},
+			categories_desc:{
+				required: 'Please enter categories description.',
+			},
+			categories_image:{
+				extension: "Allowed only JPG|JPEG|PNG files extension",
+			},
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+	
+	/* USE : Delete Categories */
+	$(document).on("click",".deletCategories",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/categoriesManagement/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					if(object.status){
+						toastr.success(object.message);
+						location.reload(true);
+					}else{
+						toastr.error(object.message);
+					}
+				}
+			});
+		}
+		else{
+			return false;
+		}
+	});
+
+	$('#subcategoreiesForm').validate({
+		rules: {
+			categories_name:{
+				required:true,
+			},
+			sub_categories_name:{
+				required:true,
+			},
+			sub_categories_desc:{
+				required:true,
+			},
+			sub_categories_image:{
+				required:true,
+				extension: "JPG|JPEG|PNG",
+			},
+			workout_time:{
+				required:true,
+			},
+			what_wiil_do:{
+				required:true,
+			},
+			equipment:{
+				required:true,
+			},
+			workout_from:{
+				required:true,
+			},
+			status:{
+				required:true,
+			},
+		},
+		messages: {
+			categories_name:{
+				required: 'Please select categories name.',
+			},
+			sub_categories_name:{
+				required: 'Please enter sub categories name.',
+			},
+			sub_categories_desc:{
+				required: 'Please enter sub categories description.',
+			},
+			sub_categories_image:{
+				required: 'Please select image.',
+				extension: "Allowed only JPG|JPEG|PNG files extension.",
+			},
+			workout_time:{
+				required: 'Please enter workout time.',
+			},
+			what_wiil_do:{
+				required: 'Please enter what we will do.',
+			},
+			equipment:{
+				required: 'Please enter equipment.',
+			},
+			workout_from:{
+				required: 'Please enter workout from.',
+			},
+			status:{
+				required: 'Please select status.',
+			},
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+
+	/* USE : Delete Categories */
+	$(document).on("click",".deletSubCategories",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/subcategoriesManagement/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					if(object.status){
+						toastr.success(object.message);
+						location.reload(true);
+					}else{
+						toastr.error(object.message);
+					}
+				}
+			});
+		}
+		else{
+			return false;
+		}
+	});
 });

@@ -22,6 +22,8 @@ return [
     'user_management' => 'User Management',
     'trainer_categories_management' => 'Trainer Categories',
     'categories_management' => 'Categories Management',
+    'sub_categories_management' => 'Sub Categories',
+    'categories' => 'Categories',
     'cms_pages' => 'CMS Pages',
     'about_us' => 'About-as',
     'contact_us' => 'Contact-us',

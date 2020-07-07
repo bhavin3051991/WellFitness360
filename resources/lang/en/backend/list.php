@@ -8,6 +8,8 @@ return [
     'fees_management' => 'Fees Management',
     'change_password' => 'Change Password',
     'user_trainer_activity' => 'User And Trainer Activity',
+    'categories' => 'Categories Management',
+    'subcategories' => 'Sub Categories Management',
 
     'forms' => [
         'add_new' => 'Add New',
@@ -21,6 +23,10 @@ return [
         'edit_trainer' => 'Edit Trainer',
         'add_user' => 'Add User',
         'edit_user' => 'Edit User',
+        'add_categories' => 'Add Categories',
+        'edit_categories' => 'Edit Categories',
+        'add_sub_categories' => 'Add Sub Categories',
+        'edit_sub_categories' => 'Edit Sub Categories',
         'about_us_content' => 'About-Us Content',
         'contact_us_content' => 'Contact-Us Content',
         'email' => 'Email',
