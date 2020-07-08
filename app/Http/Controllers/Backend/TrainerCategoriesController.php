@@ -77,7 +77,7 @@ class TrainerCategoriesController extends Controller
 	 */
 	public function show($id)
 	{
-
+		
 	}
 
 	/**

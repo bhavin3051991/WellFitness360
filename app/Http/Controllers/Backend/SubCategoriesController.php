@@ -46,7 +46,6 @@ class SubCategoriesController extends Controller
 			'sub_categories_name' => 'required',
 			'sub_categories_desc' => 'required',
 			'sub_categories_image' => 'required',
-			'sub_categories_image' => 'image|mimes:jpeg,png,jpg',
 			'workout_time' => 'required',
 			'what_wiil_do' => 'required',
 			'equipment' => 'required',
@@ -58,7 +57,6 @@ class SubCategoriesController extends Controller
 			'sub_categories_name.required' => 'Please enter sub categories name.',
 			'sub_categories_desc.required' => 'Please enter sub categories description.',
 			'sub_categories_image.required' => 'Please select image.',
-			'sub_categories_image' => 'Allowed only JPG|JPEG|PNG files extension.',
 			'workout_time.required' => 'Please enter workout time.',
 			'what_wiil_do.required' => 'Please enter what we will do.',
 			'equipment.required' => 'Please enter equipment.',
@@ -78,6 +76,13 @@ class SubCategoriesController extends Controller
 			$image->move(public_path($public_path),$name);
 			$fullImagePath = $public_path.'/'.$name;
 		}
+		$fullvideoPath = null;
+		if($request->hasfile('video')){
+			$video = $request->file('video');
+			$videoname =  time().$video->getClientOriginalName();
+			$video->move(public_path($public_path),$videoname);
+			$fullvideoPath = $public_path.'/'.$videoname;
+		}
 		$insertSubCategories = new Subcategories;
 		$insertSubCategories->cat_id = $request->categories_name;
 		$insertSubCategories->Sub_cat_name = $request->sub_categories_name;
@@ -87,6 +92,8 @@ class SubCategoriesController extends Controller
 		$insertSubCategories->what_will_do = $request->what_wiil_do;
 		$insertSubCategories->equipment     = $request->equipment;
 		$insertSubCategories->workout_from = $request->workout_from;
+		$insertSubCategories->package = $request->package;
+		$insertSubCategories->video = isset($request->video) ? $fullvideoPath : '';
 		$insertSubCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $insertSubCategories->save();
 		if($result){
@@ -164,17 +171,28 @@ class SubCategoriesController extends Controller
 			$image->move(public_path($public_path),$name);
 			$fullImagePath = $public_path.'/'.$name;
 		}
+		$fullvideoPath = null;
+		if($request->hasfile('video')){
+			$video = $request->file('video');
+			$videoname =  time().$video->getClientOriginalName();
+			$video->move(public_path($public_path),$videoname);
+			$fullvideoPath = $public_path.'/'.$videoname;
+		}
 		$updateSubCategories = Subcategories::find($id);
 		$updateSubCategories->cat_id = $request->categories_name;
 		$updateSubCategories->Sub_cat_name = $request->sub_categories_name;
 		$updateSubCategories->Sub_cat_description = $request->sub_categories_desc;
 		if(isset($request->sub_categories_image) && !empty($fullImagePath)){
-            $updateSubCategories->Sub_cat_image        = $fullImagePath;
-        }
+			$updateSubCategories->Sub_cat_image        = $fullImagePath;
+		}
 		$updateSubCategories->workout_time = $request->workout_time;
 		$updateSubCategories->what_will_do = $request->what_wiil_do;
 		$updateSubCategories->equipment     = $request->equipment;
 		$updateSubCategories->workout_from = $request->workout_from;
+		$updateSubCategories->package = $request->package;
+		if(isset($request->video) && !empty($fullImagePath)){
+			$updateSubCategories->video        = $fullImagePath;
+		}
 		$updateSubCategories->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $updateSubCategories->save();
 		if($result){
@@ -193,13 +211,13 @@ class SubCategoriesController extends Controller
 	public function destroy($id)
 	{
 		$SubCategories = Subcategories::find($id)->delete();
-        if($SubCategories){
-            $message = 'Sub Categories deleted successfully..';
-            $status = true;
-        }else{
-            $message = 'Please try again';
-            $status = false;
-        }
-        return response()->json(['status' => $status,'message' => $message]);
+		if($SubCategories){
+			$message = 'Sub Categories deleted successfully..';
+			$status = true;
+		}else{
+			$message = 'Please try again';
+			$status = false;
+		}
+		return response()->json(['status' => $status,'message' => $message]);
 	}
 }

@@ -17,3 +17,11 @@ label.error{
 .usertrainer-cls{
     margin: 0px 0px 0px 681px;
 }
+div.ms-options ul{
+    min-height: 200px;
+    overflow: auto;
+    display: block;
+    max-height: 200px;
+    list-style-type: none;
+    margin: 0px 0px 0px -31px;
+}

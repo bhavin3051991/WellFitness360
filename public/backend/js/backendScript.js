@@ -4,7 +4,37 @@ $(window).load(function() {
 
 $(document).ready(function () {
 	$("#cover-spin").css("display", "none");
+	if($("#what_wiil_do").length){
+		CKEDITOR.replace( 'what_wiil_do' );
+	}
+	if($("#event_desc").length){
+		CKEDITOR.replace( 'event_desc' );
+	}
+	if($("#start_date").length){
+		$('#start_date').datepicker({
+			onSelect: function(dateText, inst){
+				minDate: 0;
+				$('#end_date').datepicker('option', 'minDate', new Date(dateText));
+			},
+			format: 'DD/MM/YYYY',
+			allowInputToggle: true
+		});
+	}
+	if($("#end_date").length){
+		$('#end_date').datepicker({
+			onSelect: function(dateText, inst){
+				$('#start_date').datepicker('option', 'maxDate', new Date(dateText));
+			},
+			format: 'DD/MM/YYYY',
+			allowInputToggle: true
+		});
+	}
 
+	if($("#trainer").length){
+		$('#trainer').multiselect({
+			placeholder: 'Select Trainer',
+		});
+	}
 	/** USE : Delete Modules */
 	$(document).on("click",".deletModule",function() {
 		$("#cover-spin").css("display", "block");
@@ -578,8 +608,8 @@ $(document).ready(function () {
 
 	$('input[type=checkbox]').change(function(e){
 	   if ($('input[type=checkbox]:checked').length > 5) {
-	        $(this).prop('checked', false);
-	        toastr.error("Allowed only five User or Trainer Select.");
+			$(this).prop('checked', false);
+			toastr.error("Allowed only five User or Trainer Select.");
 	   }
 	})
 	
@@ -699,7 +729,13 @@ $(document).ready(function () {
 		}
 	});
 
+	$.validator.addMethod('filesize', function(value, element, param) {
+		var param = 2000000;
+		return this.optional(element) || (element.files[0].size <= param)    
+	});
+
 	$('#subcategoreiesForm').validate({
+		ignore: "input:hidden:not(input:hidden.required)",
 		rules: {
 			categories_name:{
 				required:true,
@@ -725,6 +761,14 @@ $(document).ready(function () {
 			},
 			workout_from:{
 				required:true,
+			},
+			package:{
+				required:true,
+			},
+			video:{
+				required:true,
+				extension: "mp4",
+				filesize:true,
 			},
 			status:{
 				required:true,
@@ -756,9 +800,25 @@ $(document).ready(function () {
 			workout_from:{
 				required: 'Please enter workout from.',
 			},
+			package:{
+				required:"Please select package.",
+			},
+			video:{
+				required:"Please select video.",
+				extension:"Allowed only mp4 files extension.",
+				filesize:"Please upload maximum 2mb file size.",
+			},
 			status:{
 				required: 'Please select status.',
 			},
+		},
+		errorPlacement: function(error, element) {
+			if (element.attr("name") == "what_wiil_do" ){
+				error.insertAfter(".whatwilldoerror");
+			}
+			else{
+				error.insertAfter(element);
+			}
 		},
 		submitHandler: function (form) {
 			$("#cover-spin").css("display", "block");
@@ -766,7 +826,7 @@ $(document).ready(function () {
 		}
 	});
 
-	/* USE : Delete Categories */
+	/* USE : Delete sub Categories */
 	$(document).on("click",".deletSubCategories",function() {
 		$("#cover-spin").css("display", "block");
 		var id = $(this).attr("data-id");
@@ -774,6 +834,94 @@ $(document).ready(function () {
 			$.ajax({
 				type: 'GET',
 				url: BASE_URL+'/subcategoriesManagement/delete/'+id,
+				data: {},
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					if(object.status){
+						toastr.success(object.message);
+						location.reload(true);
+					}else{
+						toastr.error(object.message);
+					}
+				}
+			});
+		}
+		else{
+			return false;
+		}
+	});
+
+	/* Sub Categoeries package*/
+	$(".freevideo").hide();
+	$("select.packagecls").change(function(){
+		var package = $(this).children("option:selected").val();
+		if(package == "free"){
+			$(".freevideo").show();
+		}else{
+			$(".freevideo").hide();
+		}
+	});
+
+	/* Event Form validation */
+	// $('#eventForm').validate({
+	// 	rules: {
+	// 		eventname:{
+	// 			required:true,
+	// 		},
+	// 		start_date:{
+	// 			required:true,
+	// 		},
+	// 		end_date:{
+	// 			required:true,
+	// 		},
+	// 		'trainer[]':{
+	// 			required:true,
+	// 		},
+	// 		status:{
+	// 			required:true,
+	// 		},
+	// 	},
+	// 	messages: {
+	// 		eventname:{
+	// 			required: 'Please enter event name.',
+	// 		},
+	// 		start_date:{
+	// 			required: 'Please enter select start date.',
+	// 		},
+	// 		end_date:{
+	// 			required: 'Please enter select end date.',
+	// 		},
+	// 		'trainer[]':{
+	// 			required: 'Please enter select trainer.',
+	// 		},
+	// 		status:{
+	// 			required: 'Please enter select status.',
+	// 		},
+	// 	},
+	// 	errorPlacement: function(error, element) {
+	// 		if (element.attr("id") == "trainer" ){
+	// 			error.insertAfter(".event-error");
+	// 		}
+	// 		else{
+	// 			error.insertAfter(element);
+	// 		}
+	// 	},
+	// 	submitHandler: function (form) {
+	// 		$("#cover-spin").css("display", "block");
+	// 		form.submit();
+	// 	}
+	// });
+
+
+	/* USE : Delete Event */
+	$(document).on("click",".deleteEvent",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/eventManagement/delete/'+id,
 				data: {},
 				success: function (response) {
 					$("#cover-spin").css("display", "none");

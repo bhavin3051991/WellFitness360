@@ -58,30 +58,30 @@ $RolePermission = [];
 						</li>
 						</ul>
 						</li> -->
-					{{--  Trainner Management  --}}
-					<li class="">
-						<a href="{{ route('trainerManagement.index') }}">
-						<i class="fa fa-user"></i>@lang('backend/sidebar.trainner_management')
-						</a>
-					</li>
 					{{--  User Management  --}}
 					<li class="">
 						<a href="{{ route('UserManagement.index') }}">
 						<i class="fa fa-user"></i>@lang('backend/sidebar.user_management')
 						</a>
 					</li>
+					{{--  Trainner Management  --}}
+					<li class="">
+						<a href="{{ route('trainerManagement.index') }}">
+						<i class="fa fa-user"></i>@lang('backend/sidebar.trainner_management')
+						</a>
+					</li>
 					{{-- Category Management  --}}
 					<li class="{{ (request()->is('dashboard'))? 'active': ''  }}">
-						<a><i class="fa fa-home"></i>@lang('backend/sidebar.categories') <span class="fa fa-chevron-down"></span></a>
+						<a><i class="fa fa-list-alt"></i>@lang('backend/sidebar.categories') <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li class="">
 								<a href="{{ route('categoriesManagement.index') }}">
-								<i class="fa fa-list-ul"></i>@lang('backend/sidebar.categories_management')
+								<i class="fa fa-list-alt"></i>@lang('backend/sidebar.categories_management')
 								</a>
 							</li>
 							<li class="">
 								<a href="{{ route('subcategoriesManagement.index') }}">
-								<i class="fa fa-list-ul"></i>@lang('backend/sidebar.sub_categories_management')
+								<i class="fa fa-list-alt"></i>@lang('backend/sidebar.sub_categories_management')
 								</a>
 							</li>
 						</ul>
@@ -90,7 +90,13 @@ $RolePermission = [];
 					{{--  Trainer Category Management  --}}
 					<li class="">
 						<a href="{{ route('trainercategoriesManagement.index') }}">
-						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.trainer_categories_management')
+						<i class="fa fa-list-alt"></i>@lang('backend/sidebar.trainer_categories_management')
+						</a>
+					</li>
+					{{--  Event Management  --}}
+					<li class="">
+						<a href="{{ route('eventManagement.index') }}">
+						<i class="fa fa-calendar-check-o"></i>@lang('backend/sidebar.event_management')
 						</a>
 					</li>
 					<li class="">

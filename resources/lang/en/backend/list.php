@@ -3,6 +3,7 @@
 return [
     'trainers_management' => 'Trainers Management',
     'user_management' => 'User Management',
+    'event_management' => 'Event Management',
     'add_new' => 'Add New',
     'list' => 'List',
     'fees_management' => 'Fees Management',
@@ -27,6 +28,8 @@ return [
         'edit_categories' => 'Edit Categories',
         'add_sub_categories' => 'Add Sub Categories',
         'edit_sub_categories' => 'Edit Sub Categories',
+        'add_event' => 'Add Event',
+        'edit_event' => 'Edit Event',
         'about_us_content' => 'About-Us Content',
         'contact_us_content' => 'Contact-Us Content',
         'email' => 'Email',

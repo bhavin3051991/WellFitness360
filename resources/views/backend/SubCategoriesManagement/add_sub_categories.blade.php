@@ -84,8 +84,8 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="what_wiil_do">What we Will do?<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="what_wiil_do" value="{{ old('what_wiil_do') }}" id="what_wiil_do" class="form-control col-md-7 col-xs-12" placeholder="Enter What we will do">
-									<small class="text-danger">{{ $errors->first('what_wiil_do') }}</small>
+									<textarea name="what_wiil_do" id="what_wiil_do" class="form-control col-md-7 col-xs-12" placeholder="Enter What we will do"></textarea>
+									<small class="text-danger whatwilldoerror">{{ $errors->first('what_wiil_do') }}</small>
 								</div>
 							</div>
 							<div class="form-group">
@@ -102,6 +102,27 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="workout_from" value="{{ old('workout_from') }}" id="workout_from" class="form-control col-md-7 col-xs-12" placeholder="Enter Equipment">
 									<small class="text-danger">{{ $errors->first('workout_from') }}</small>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Package</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<select id="package" name="package" class="form-control packagecls">
+										<option value="">Select Package</option>
+										<option value="free">Free</option>
+										<option value="paid">Paid</option>
+									</select>
+									<small class="text-danger">{{ $errors->first('package') }}</small>
+								</div>
+							</div>
+							<div class="freevideo">
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="video">Video <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="file" name="video" id="video" class="form-control col-md-7 col-xs-12">
+										<small class="text-danger">{{ $errors->first('video') }}</small>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">

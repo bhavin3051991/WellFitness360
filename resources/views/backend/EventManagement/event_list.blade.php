@@ -10,11 +10,11 @@
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
-					<h3>@lang('backend/list.subcategories')</h3>
+					<h3>@lang('backend/list.event_management')</h3>
 				</div>
 				<div class="title_right">
 					<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						<a href="{{ route('subcategoriesManagement.create') }}">
+						<a href="{{ route('eventManagement.create') }}">
 						<button type="button" class="btn btn-success add-new-btn">@lang('backend/list.add_new')</button>
 						</a>
 					</div>
@@ -25,14 +25,12 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
 						@if(session()->has('success_msg'))
-						<div class="alert alert-success alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<div class="alert alert-success">
 							{{ session()->get('success_msg') }}
 						</div>
 						@endif
 						@if(session()->has('error_msg'))
-						<div class="alert alert-danger alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<div class="alert alert-danger">
 							{{ session()->get('error_msg') }}
 						</div>
 						@endif
@@ -59,37 +57,27 @@
 							<table id="datatable-buttons" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>No </th>
-										<th>Sub Categories Name</th>
-										<th>Categories Name</th>
-										<th>Sub Categories Description</th>
-										<th>Sub Categories Image</th>
-										<th>Package</th>
-										<th>Status</th>
+										<th>No</th>
+										<th>EventName</th>
+										<th>EventCode</th>
+										<th>Start Date</th>
+										<th>End Date</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									@if($subCategories)
-										@foreach($subCategories as $value)
+									@if($events)
+										@foreach($events as $event)
 										<tr>
 											<td>{{ $loop->iteration }}</td>
-											<td>{{ ucfirst($value['Sub_cat_name']) }}</td>
-											<td>{{ ucfirst($value['categories']['cat_Name']) }}</td>
-											<td>{{ $value['Sub_cat_description'] }}</td>
-											<td><img src="{{ asset($value['Sub_cat_image']) }}" alt="" width="75px;" height="75px;"></td>
-											<td>{{ ucfirst($value['package']) }}</td>
+											<td>{{ $event['Event_name'] }}</td>
+											<td>{{ $event['Event_code'] }}</td>
+											<td>{{ date("d/m/Y",strtotime($event['start_date'])) }}</td>
+											<td>{{ date("d/m/Y",strtotime($event['end_date'])) }}</td>
 											<td>
-												@if($value['status'] == 1)
-													<span class="label label-success">Active</span>
-												@else
-													<span class="label label-danger">Inactive</span>
-												@endif
-											</td>
-											<td>
-												<a href="{{ route('subcategoriesManagement.edit',$value['ID']) }}"><i class="fa fa-edit"></i> Edit</a>
-												<a href="javascript:void(0);" data-id="{{ $value['ID'] }}" class="deletSubCategories">
-												<i class="fa fa-trash"></i> Delete
+												<a href="{{ route('eventManagement.edit',$event['ID']) }}"><i class="fa fa-edit"></i></a>
+												<a href="javascript:void(0);" data-id="{{ $event['ID'] }}" class="deleteEvent">
+													<i class="fa fa-trash"></i>
 												</a>
 											</td>
 										</tr>
