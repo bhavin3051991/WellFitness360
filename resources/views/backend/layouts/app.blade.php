@@ -85,6 +85,8 @@
 	<!-- FastClick -->
 	<!-- <script src="{{ asset('backend/vendors/fastclick/lib/fastclick.js') }}"></script> -->
 	<!-- bootstrap-progressbar -->
+	<script src="{{ asset('backend/vendors/raphael/raphael.min.js') }}"></script>
+	<script src="{{ asset('backend/vendors/raphael/morris.min.js') }}"></script>
 	<!-- <script src="{{ asset('backend/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script> -->
 	<!-- iCheck -->
 	<!-- <script src="{{ asset('backend/vendors/iCheck/icheck.min.js') }}"></script> -->

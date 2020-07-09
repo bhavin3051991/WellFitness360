@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 
 	// User Management
 	Route::get('/UserManagement/delete/{id}', 'UserController@destroy');
+	Route::match(['GET', 'POST'], 'check-email-register', 'UserController@EmailCheckRegister')->name('emailregister');
 	Route::resource('UserManagement', 'UserController');
 
 	// Trainer Categories Management
@@ -91,6 +92,11 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	// Event Management
 	Route::get('/eventManagement/delete/{id}', 'EventController@destroy');
 	Route::resource('eventManagement', 'EventController');
+
+	// Subscription Management
+	Route::get('/SubscriptionPlanManagement/delete/{id}', 'SubscriptionPlanController@destroy');
+	Route::resource('SubscriptionPlanManagement', 'SubscriptionPlanController');
+	
 	// CMS-Pages Managment
 	Route::match(['GET', 'POST'], 'cms_aboutus', 'CMSPagesController@aboutUs')->name('cms_aboutus');
 	Route::match(['GET', 'POST'], 'cms_contactus', 'CMSPagesController@contactus')->name('cms_contactus');

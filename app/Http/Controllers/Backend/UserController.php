@@ -47,7 +47,7 @@ class UserController extends Controller
         $rules = array(
             'name' => 'required',
             'surname' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'contact_no' => 'nullable|numeric|min:10',
             'gender' => 'required',
             'status' => 'required',
@@ -57,7 +57,6 @@ class UserController extends Controller
             'surname.required' => 'Please Enter surname',
             'email.required' => 'Please Enter Email',
             'email.email' => "Please Enter Valid Email",
-            'email.unique' => "Email Alredy Exist",
             'contact_no.numeric' => "Please enter valid contact number",
             'status.required' => 'Please select status',
         );
@@ -161,5 +160,15 @@ class UserController extends Controller
             $status = false;
         }
         return response()->json(['status' => $status]);
+    }
+
+    public function EmailCheckRegister(Request $r){
+        $email = !empty($r->email) ? $r->email : '';
+        $user = User::where('Email',$email)->orWhere('deleted_at','!=',NULL)->count();
+        if($user){
+            echo 'false';
+        }else{
+            echo 'true';
+        }
     }
 }

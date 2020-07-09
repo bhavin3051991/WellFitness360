@@ -32,4 +32,5 @@ return [
     'e_shop_management' => 'E-Shop Management',
     'fees_management' => 'Fees Management',
     'user_trainer_activty' => 'User And Trainer Activity',
+    'subscriptionplan_management' => 'Subscription Plan',
 ];

@@ -83,6 +83,7 @@
 												@endif
 											</td>
 											<td>
+												<a href="{{ route('trainerManagement.show',$trainer['id']) }}"><i class="fa fa-eye"></i> View</a>
 												<a href="{{ route('trainerManagement.edit',$trainer['id']) }}"><i class="fa fa-edit"></i> Edit</a>
 												<a href="javascript:void(0);" data-id="{{ $trainer['id'] }}" class="deleteTrainer">
 												<i class="fa fa-trash"></i> Delete

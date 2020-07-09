@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2020 at 03:43 PM
+-- Generation Time: Jul 09, 2020 at 03:17 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -92,6 +92,30 @@ CREATE TABLE `contact_us` (
 
 INSERT INTO `contact_us` (`ID`, `Email`, `ContactNumber`, `Address`, `Telephone`, `Website`, `Description`, `created_at`, `updated_at`) VALUES
 (1, 'wellfil360@gmail.com', '7845784578', 'simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '(784) 545-4784', 'www.wellfit360.com', 'simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2020-05-15 10:15:34', '2020-05-15 10:21:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `durations`
+--
+
+CREATE TABLE `durations` (
+  `id` int(11) NOT NULL,
+  `duration` varchar(10) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1=Acive, 0=InActive',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `durations`
+--
+
+INSERT INTO `durations` (`id`, `duration`, `status`, `created_at`, `updated_at`) VALUES
+(1, '3 Months', 1, '2020-07-09 17:23:54', '2020-07-09 17:23:54'),
+(2, '6 Months', 1, '2020-07-09 17:23:54', '2020-07-09 17:23:54'),
+(3, '9 Months', 1, '2020-07-09 17:24:12', '2020-07-09 17:24:12'),
+(4, '1 Year', 1, '2020-07-09 17:24:12', '2020-07-09 17:24:12');
 
 -- --------------------------------------------------------
 
@@ -354,15 +378,31 @@ CREATE TABLE `subcategories` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `subcategories`
+-- Table structure for table `subscription_plan`
 --
 
-INSERT INTO `subcategories` (`ID`, `cat_id`, `Sub_cat_name`, `Sub_cat_description`, `Sub_cat_image`, `workout_time`, `what_will_do`, `equipment`, `workout_from`, `status`, `package`, `video`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'Fit 2 Fit 12', 'Tets 12', 'backend/images/SubCategoriesImage/1594124454person.png', '15 Minutes 12', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'None,Full Gym211', 'Workout from home21', '1', 'paid', NULL, '2020-07-07 17:50:54', '2020-07-08 15:31:06', NULL),
-(2, 1, 'asdasda', 'dasdas', 'backend/images/SubCategoriesImage/1594184878pexels-photo-210019.jpeg', '15 Minutes', '<p>Tets21</p>', 'None,Full Gym211', 'Workout from home', '1', 'free', 'backend/images/SubCategoriesImage/1594184878samplevideo.mp4', '2020-07-08 10:37:58', '2020-07-08 15:31:55', NULL),
-(3, 1, 'Fit 2 Fitfdsf', 'asdasds', 'backend/images/SubCategoriesImage/1594200885person.png', '15 Minutes', 'Tets21', 'None,Full Gym211', 'Workout from home', '1', 'free', 'backend/images/SubCategoriesImage/1594200885samplevideo.mp4', '2020-07-08 15:04:45', '2020-07-08 15:04:45', NULL),
-(4, 1, 'Fit 2 Fit', 'Tets 12', 'backend/images/SubCategoriesImage/1594202345person.png', '15 Minutes', '<p>sdfsdfsdvsdvsd</p>', 'None,Full Gym211', 'Workout from home', '1', 'paid', '', '2020-07-08 15:29:05', '2020-07-08 15:29:05', NULL);
+CREATE TABLE `subscription_plan` (
+  `id` tinyint(4) NOT NULL,
+  `Title` varchar(50) NOT NULL,
+  `Amount` float(10,2) NOT NULL,
+  `Duration_id` int(11) NOT NULL,
+  `Status` tinyint(1) DEFAULT 0 COMMENT '0 = InActive , 1 = Active',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subscription_plan`
+--
+
+INSERT INTO `subscription_plan` (`id`, `Title`, `Amount`, `Duration_id`, `Status`, `created_at`, `updated_at`) VALUES
+(1, 'Training & Nutrition', 3.64, 1, 1, '2020-07-09 18:00:57', '2020-07-09 18:10:47'),
+(2, 'Training', 94.44, 1, 1, '2020-07-09 18:01:22', '2020-07-09 18:01:22'),
+(3, 'Training & Nutrition', 3.64, 2, 1, '2020-07-09 18:01:46', '2020-07-09 18:01:46'),
+(4, 'Training', 94.44, 2, 1, '2020-07-09 18:02:11', '2020-07-09 18:02:11');
 
 -- --------------------------------------------------------
 
@@ -430,20 +470,20 @@ INSERT INTO `trainer_categories` (`trainer_cat_id`, `trainer_cat_name`, `par_cat
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `sur_name` varchar(50) DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `contact_no` varchar(15) DEFAULT NULL,
+  `password` text DEFAULT NULL,
   `auth_provider` varchar(15) NOT NULL DEFAULT 'SITE_LOGIN',
   `facebook_id` text DEFAULT NULL,
   `facebook_token` longtext DEFAULT NULL,
   `google_id` text DEFAULT NULL,
   `google_token` longtext DEFAULT NULL,
-  `name` varchar(50) NOT NULL,
-  `sur_name` varchar(50) DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `contact_no` varchar(15) DEFAULT NULL,
   `profile_image` longtext DEFAULT NULL,
   `social_profile_image` longtext DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` text DEFAULT NULL,
   `email_verified` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 = true ,0=false',
   `verified_token` longtext DEFAULT NULL,
   `remember_token` longtext DEFAULT NULL,
@@ -458,14 +498,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `auth_provider`, `facebook_id`, `facebook_token`, `google_id`, `google_token`, `name`, `sur_name`, `gender`, `email`, `contact_no`, `profile_image`, `social_profile_image`, `email_verified_at`, `password`, `email_verified`, `verified_token`, `remember_token`, `tranier_approved`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Admin', NULL, '1', 'admin@admin.com', NULL, NULL, NULL, NULL, '$2y$10$qfC743J0Panr0qCBrZVwj.chmClfouNMmQrC1da.6XXr1UCRYVzWC', 1, 'cnZGJRPgbh1vlZWJijqD7qPLZGuZ5bytRvNuxtom410o5c8YZx678LpoOl62UpIYQdZClzpQnUsS3aqKrw81puU7CLgBbYLAvuwh8aA3xGlSmEuOPRpbemlP', NULL, '0', 0, '2020-05-09 08:29:33', '2020-06-26 11:00:20', NULL),
-(2, 2, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Manoj', 'Prajapati', 'Male', 'manoj1@silverwebbuzz.com', '8785458754', NULL, NULL, NULL, '$2y$10$idB7frjqy9G3Pd821SyQ..b80Sqrg7GaebO8HdlZidxIFWGIFVNnG', 1, NULL, NULL, '0', 1, '2020-05-09 22:57:38', '2020-06-17 11:25:02', NULL),
-(3, 2, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Bhavin', 'Patel', 'Male', 'bhavin@silverwebbuzz.com', '7887884574', NULL, NULL, NULL, '$2y$10$KD2w8dXIaS.2zl3ZLoh83uY82ANdRJu18ObqX3kqy3TthI0lZ4Mdm', 0, NULL, NULL, '0', 1, '2020-05-10 02:23:43', '2020-07-02 16:11:17', NULL),
-(4, 3, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Gautam', 'Patel', 'Male', 'gautam@silverwebbuzz.com', '7845784578', NULL, NULL, NULL, '$2y$10$4gTw8J1g5v491IY8tTpVB.flhxLWw3pckinfqMQIT3zBkv5aWP9xq', 0, NULL, NULL, '1', 1, '2020-05-12 05:52:50', '2020-07-08 15:44:22', NULL),
-(5, 3, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Sachin', 'Suthar', 'Female', 'sachina@silverwebbuzz.com', '7845124578', NULL, NULL, NULL, '$2y$10$BoS3GuP27GmXZvcOH.UP7OxmwlBPLHX4OIK7I2DaiC3MWvxFbGQG6', 0, NULL, NULL, '1', 1, '2020-05-12 05:54:14', '2020-07-08 17:10:52', NULL),
-(9, 3, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Hiral', 'Suthar', 'Male', 'hiral@silverwebbuzz.com', '7875457854', NULL, NULL, NULL, '$2y$10$FSjiWi.g1jEEoo0A4PVxrORCF1yKxmbU68biRAxooMR.FZy.s8Zxe', 1, NULL, NULL, '1', 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
-(11, 2, 'SITE_LOGIN', NULL, NULL, NULL, NULL, 'Manoj', 'Prajapati', 'Male', 'manoj@silverwebbuzz.com', '7845784578', NULL, NULL, '2020-06-17 07:13:54', '$2y$10$QXBoSue.YR1atrovd/Bg..4w4iAAs7x0eaMyLMk/mu9jupaiWCIS6', 1, 'NwsVbcY4JbJKP2uwVeD6vl4xkoRCs3gmnKdA8J4OVWBLeydVNi5uvy5jhJOgYnrCmKA1xix8MJMCscVGLJXQ5W3e57cRsf03GMkmXoaSkzrtFoYZJDPDylw1', NULL, '0', 0, '2020-06-17 12:02:57', '2020-06-18 17:05:18', NULL);
+INSERT INTO `users` (`id`, `role_id`, `name`, `sur_name`, `email`, `gender`, `contact_no`, `password`, `auth_provider`, `facebook_id`, `facebook_token`, `google_id`, `google_token`, `profile_image`, `social_profile_image`, `email_verified_at`, `email_verified`, `verified_token`, `remember_token`, `tranier_approved`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Admin', NULL, 'admin@admin.com', '1', NULL, '$2y$10$qfC743J0Panr0qCBrZVwj.chmClfouNMmQrC1da.6XXr1UCRYVzWC', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'cnZGJRPgbh1vlZWJijqD7qPLZGuZ5bytRvNuxtom410o5c8YZx678LpoOl62UpIYQdZClzpQnUsS3aqKrw81puU7CLgBbYLAvuwh8aA3xGlSmEuOPRpbemlP', NULL, '0', 0, '2020-05-09 08:29:33', '2020-06-26 11:00:20', NULL),
+(2, 2, 'Manoj', 'Prajapati', 'manoj1@silverwebbuzz.com', 'Male', '8785458754', '$2y$10$idB7frjqy9G3Pd821SyQ..b80Sqrg7GaebO8HdlZidxIFWGIFVNnG', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '0', 1, '2020-05-09 22:57:38', '2020-06-17 11:25:02', NULL),
+(3, 2, 'Bhavin', 'Patel', 'bhavin@silverwebbuzz.com', 'Male', '7887884574', '$2y$10$KD2w8dXIaS.2zl3ZLoh83uY82ANdRJu18ObqX3kqy3TthI0lZ4Mdm', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-05-10 02:23:43', '2020-07-02 16:11:17', NULL),
+(4, 3, 'Gautam', 'Patel', 'gautam@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$4gTw8J1g5v491IY8tTpVB.flhxLWw3pckinfqMQIT3zBkv5aWP9xq', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 'RO54X1cNwh97dDAJNUITysautdEmUmpk782NVL7Z62OqWPqEGcg7Z4yHU1MPg5svCutpqMQHXa1OneUJ5GQzoF53l5dqmoWdtaYVapqaiVQRqjKfFwFjQwWp', '1', 1, '2020-05-12 05:52:50', '2020-07-09 10:18:17', NULL),
+(5, 3, 'Sachin', 'Suthar', 'bgautamp.gp912@gmail.com', 'Female', '7845124578', '$2y$10$BoS3GuP27GmXZvcOH.UP7OxmwlBPLHX4OIK7I2DaiC3MWvxFbGQG6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '1', 1, '2020-05-12 05:54:14', '2020-07-08 17:10:52', NULL),
+(9, 3, 'Hiral', 'Suthar', 'hiral@silverwebbuzz.com', 'Male', '7875457854', '$2y$10$FSjiWi.g1jEEoo0A4PVxrORCF1yKxmbU68biRAxooMR.FZy.s8Zxe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '1', 1, '2020-06-03 16:18:45', '2020-07-08 15:44:38', NULL),
+(11, 2, 'Manoj', 'Prajapati', 'manoj@silverwebbuzz.com', 'Male', '7845784578', '$2y$10$QXBoSue.YR1atrovd/Bg..4w4iAAs7x0eaMyLMk/mu9jupaiWCIS6', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, '2020-06-17 07:13:54', 1, 'NwsVbcY4JbJKP2uwVeD6vl4xkoRCs3gmnKdA8J4OVWBLeydVNi5uvy5jhJOgYnrCmKA1xix8MJMCscVGLJXQ5W3e57cRsf03GMkmXoaSkzrtFoYZJDPDylw1', NULL, '0', 0, '2020-06-17 12:02:57', '2020-06-18 17:05:18', NULL),
+(12, 2, 'Sachin', 'Suthar', 'sachin@silverwebbuzz.com', 'Male', '7046587954', '$2y$10$xXJju5MhLwpUv01o3KY7ne/Iys26rPojtMnix5DrJ1/FaiNV86Wwe', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-07-09 17:08:52', '2020-07-09 17:09:18', '2020-07-09 17:09:18'),
+(13, 3, 'Bhavin', 'Patel', 'bhavin78@silverwebbuzz.com', 'Male', '7845878979', '$2y$10$kPQRBdsyOzNAFUCd2u.kce6McL8LjKmktheaRVWD914/4p.5l1bnW', 'SITE_LOGIN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '0', 1, '2020-07-09 17:10:08', '2020-07-09 17:10:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -508,6 +550,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `contact_us`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `durations`
+--
+ALTER TABLE `durations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `e-shop`
@@ -572,6 +620,12 @@ ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `subscription_plan`
+--
+ALTER TABLE `subscription_plan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `trainer_categories`
 --
 ALTER TABLE `trainer_categories`
@@ -611,6 +665,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `contact_us`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `durations`
+--
+ALTER TABLE `durations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `e-shop`
@@ -673,6 +733,12 @@ ALTER TABLE `subcategories`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `subscription_plan`
+--
+ALTER TABLE `subscription_plan`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `trainer_categories`
 --
 ALTER TABLE `trainer_categories`
@@ -682,7 +748,7 @@ ALTER TABLE `trainer_categories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_trainer_activity`
@@ -693,18 +759,6 @@ ALTER TABLE `user_trainer_activity`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `feesmanagement`
---
-ALTER TABLE `feesmanagement`
-  ADD CONSTRAINT `TrainerID` FOREIGN KEY (`TrainerID`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `permission`
---
-ALTER TABLE `permission`
-  ADD CONSTRAINT `created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`

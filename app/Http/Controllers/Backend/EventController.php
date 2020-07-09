@@ -53,8 +53,25 @@ class EventController extends Controller
 		$event->status = ($request->status) ? $request->status : '2';
 		$event->Event_desc = ($request->event_desc) ? $request->event_desc : '';
 		$result = $event->save();
+		$trainer_id = json_decode(json_encode($request->trainer));
+		foreach($trainer_id as $val){
+			$user = User::where("id",$val)->first();
+			$dataarr = array(
+				'name' => $user->name .''.$user->sur_name,
+				'email' => $user->email,
+				'event_name' => $request->eventname,
+				'start_date' => $request->start_date,
+				'end_date' => $request->end_date,
+				'livecode' => $request->livecode,
+			);
+			$usersemail = $user->email;
+			$sendMail = Mail::send('email.sendevent',$dataarr, function ($message) use ($dataarr,$usersemail) {
+				$message->subject('Event Invitation');
+				$message->to($usersemail);
+			});
+		}
 		if($result){
-			return redirect('eventManagement')->with('success_msg', 'Event added successfully.');
+			return redirect('eventManagement')->with('success_msg', 'Event added successfully and send mail selected trainer.');
 		}else{
 			return back()->with('error_msg', 'Problem was error accured.. Please try again..');
 		}
@@ -103,6 +120,23 @@ class EventController extends Controller
 		$event->status = ($request->status) ? $request->status : '2';
 		$event->Event_desc = ($request->event_desc) ? $request->event_desc : '';
 		$result = $event->save();
+		$trainer_id = json_decode(json_encode($request->trainer));
+		foreach($trainer_id as $val){
+			$user = User::where("id",$val)->first();
+			$dataarr = array(
+				'name' => $user->name .''.$user->sur_name,
+				'email' => $user->email,
+				'event_name' => $request->eventname,
+				'start_date' => $request->start_date,
+				'end_date' => $request->end_date,
+				'livecode' => $request->livecode,
+			);
+			$usersemail = $user->email;
+			$sendMail = Mail::send('email.sendevent',$dataarr, function ($message) use ($dataarr,$usersemail) {
+				$message->subject('Event Invitation');
+				$message->to($usersemail);
+			});
+		}
 		if($result){
 			return redirect('eventManagement')->with('success_msg', 'Event updated successfully.');
 		}else{

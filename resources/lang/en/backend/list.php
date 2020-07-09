@@ -11,6 +11,7 @@ return [
     'user_trainer_activity' => 'User And Trainer Activity',
     'categories' => 'Categories Management',
     'subcategories' => 'Sub Categories Management',
+    'subscriptionplan_management' => 'Subscription Plan Management',
 
     'forms' => [
         'add_new' => 'Add New',
@@ -48,6 +49,12 @@ return [
         'edit_fees' => 'Edit Fees',
         'old_password' => 'Old Password',
         'new_password' => 'New Password',
-        'confirm_password' => 'Confirm Password'
+        'confirm_password' => 'Confirm Password',
+        'submit' => 'Submit',
+        'back' => 'Back',
+        'duration' => 'Duration',
+        'edit_subscription_plan' => 'Edit Subscription Plan',
+        'add_subscription_plan' =>'Add Subscription Plan',
+        'amount' =>'Amount',
     ]
 ];

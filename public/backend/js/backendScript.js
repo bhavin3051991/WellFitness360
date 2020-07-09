@@ -140,6 +140,13 @@ $(document).ready(function () {
 			email:{
 				required:true,
 				email:true,
+				remote: {
+					url: BASE_URL+"/check-email-register",
+					type: "post",
+					data:{
+						"_token": $('#csrf-token').val(),
+					},
+				},
 			},
 			contact_no:{
 				required:true,
@@ -161,7 +168,8 @@ $(document).ready(function () {
 			},
 			email:{
 				required: 'Please enter email.',
-				email : 'Please enter valid email.'
+				email : 'Please enter valid email.',
+				remote: "Email already exists.",
 			},
 			contact_no:{
 				required: 'Please enter contact number.',
@@ -217,6 +225,13 @@ $(document).ready(function () {
 			email:{
 				required:true,
 				email:true,
+				remote: {
+					url: BASE_URL+"/check-email-register",
+					type: "post",
+					data:{
+						"_token": $('#csrf-token').val(),
+					},
+				},
 			},
 			contact_no:{
 				required:true,
@@ -238,7 +253,8 @@ $(document).ready(function () {
 			},
 			email:{
 				required: 'Please enter email.',
-				email : 'Please enter valid email.'
+				email : 'Please enter valid email.',
+				remote: "Email already exists.",
 			},
 			contact_no:{
 				required: 'Please enter contact number.',
@@ -864,54 +880,54 @@ $(document).ready(function () {
 	});
 
 	/* Event Form validation */
-	// $('#eventForm').validate({
-	// 	rules: {
-	// 		eventname:{
-	// 			required:true,
-	// 		},
-	// 		start_date:{
-	// 			required:true,
-	// 		},
-	// 		end_date:{
-	// 			required:true,
-	// 		},
-	// 		'trainer[]':{
-	// 			required:true,
-	// 		},
-	// 		status:{
-	// 			required:true,
-	// 		},
-	// 	},
-	// 	messages: {
-	// 		eventname:{
-	// 			required: 'Please enter event name.',
-	// 		},
-	// 		start_date:{
-	// 			required: 'Please enter select start date.',
-	// 		},
-	// 		end_date:{
-	// 			required: 'Please enter select end date.',
-	// 		},
-	// 		'trainer[]':{
-	// 			required: 'Please enter select trainer.',
-	// 		},
-	// 		status:{
-	// 			required: 'Please enter select status.',
-	// 		},
-	// 	},
-	// 	errorPlacement: function(error, element) {
-	// 		if (element.attr("id") == "trainer" ){
-	// 			error.insertAfter(".event-error");
-	// 		}
-	// 		else{
-	// 			error.insertAfter(element);
-	// 		}
-	// 	},
-	// 	submitHandler: function (form) {
-	// 		$("#cover-spin").css("display", "block");
-	// 		form.submit();
-	// 	}
-	// });
+	$('#eventForm').validate({
+		rules: {
+			eventname:{
+				required:true,
+			},
+			start_date:{
+				required:true,
+			},
+			end_date:{
+				required:true,
+			},
+			'trainer[]':{
+				required:true,
+			},
+			status:{
+				required:true,
+			},
+		},
+		messages: {
+			eventname:{
+				required: 'Please enter event name.',
+			},
+			start_date:{
+				required: 'Please enter select start date.',
+			},
+			end_date:{
+				required: 'Please enter select end date.',
+			},
+			'trainer[]':{
+				required: 'Please enter select trainer.',
+			},
+			status:{
+				required: 'Please enter select status.',
+			},
+		},
+		errorPlacement: function(error, element) {
+			if (element.attr("id") == "trainer" ){
+				error.insertAfter(".event-error");
+			}
+			else{
+				error.insertAfter(element);
+			}
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
 
 
 	/* USE : Delete Event */
@@ -937,6 +953,59 @@ $(document).ready(function () {
 		}
 		else{
 			return false;
+		}
+	});
+	/* USE : Subscription plan Management */
+	$('#subscriptionPlan').validate({
+		rules: {
+			Duration:{
+				required:true,
+			},
+			Title:{
+				required:true,
+			},
+			Amount:{
+				required:true,
+			},
+			Status:{
+				required:true,
+			},
+		},
+		messages: {
+			Duration:{
+				required: 'Please select Duration',
+			},
+			Title:{
+				required: 'Please enter title',
+			},
+			Amount:{
+				required: 'Please enter amount',
+			},
+			Status:{
+				required: 'Please select status',
+			},
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+	/** USE : Delete Modules */
+	$(document).on("click",".deletPlan",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/SubscriptionPlanManagement/delete/'+id,
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					location.reload();
+				}
+			});
+		}else{
+			return false
 		}
 	});
 });

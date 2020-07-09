@@ -47,7 +47,7 @@ class TrainerController extends Controller
 		$rules = array(
 			'name' => 'required',
 			'surname' => 'required',
-			'email' => 'required|email|unique:users',
+			'email' => 'required|email',
 			'contact_no' => 'nullable|numeric|min:10',
 			'gender' => 'required',
 			'status' => 'required',
@@ -57,7 +57,6 @@ class TrainerController extends Controller
 			'surname.required' => 'Please Enter surname',
 			'email.required' => 'Please Enter Email',
 			'email.email' => "Please Enter Valid Email",
-			'email.unique' => "Email Alredy Exist",
 			'contact_no.numeric' => "Please enter valid contact number",
 			'status.required' => 'Please select status',
 		);
@@ -90,7 +89,8 @@ class TrainerController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$trainer_view = User::find($id);
+		return view('backend.TrainerManagement.trainer_view',compact('trainer_view'));
 	}
 
 	/**

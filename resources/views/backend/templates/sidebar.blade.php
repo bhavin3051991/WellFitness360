@@ -34,78 +34,62 @@ $RolePermission = [];
 			<div class="menu_section">
 				<h3>General</h3>
 				<ul class="nav side-menu">
-					<li class="{{ (request()->is('dashboard'))? 'active': ''  }}">
-						<a><i class="fa fa-home"></i>@lang('backend/sidebar.home') <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li class="{{ (request()->is('dashboard'))? 'current-page': ''  }}"><a href="{{ route('dashboard') }}">@lang('backend/sidebar.administrator')</a></li>
-						</ul>
+					<li class="{{ (request()->is('dashboard'))? 'current-page': ''  }}">
+						<a href="{{ route('dashboard') }}"><i class="fa fa-home"></i>@lang('backend/sidebar.home')</a>
 					</li>
-				</ul>
-				<ul class="nav side-menu">
-					<!-- <li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')))) ||
-						(request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) )) ? 'active': ''  }}">
-						<a><i class="fa fa-home"></i>
-						@lang('backend/sidebar.administrator')
-						<span class="fa fa-chevron-down"></span>
-						</a>
-						<ul class="nav child_menu" style="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit'))))
-						|| (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit'))))? 'display:block': ''  }}">
-						<li class="{{ (request()->is('module') || (request()->is('module/create') ||(request()->is('module/*/edit')) ))? 'current-page': ''  }}">
-						<a href="{{ route('module.index') }}">@lang('backend/sidebar.modules')</a>
-						</li>
-						<li class="{{ (request()->is('rolepermission') || (request()->is('rolepermission/create') ||(request()->is('rolepermission/*/edit')) ))? 'current-page': ''  }}">
-						<a href="{{ route('rolepermission.index') }}">@lang('backend/sidebar.roles_permission')</a>
-						</li>
-						</ul>
-						</li> -->
 					{{--  User Management  --}}
-					<li class="">
+					<li class="{{ (request()->is('UserManagement') || (request()->is('UserManagement/create') ||(request()->is('UserManagement/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('UserManagement.index') }}">
 						<i class="fa fa-user"></i>@lang('backend/sidebar.user_management')
 						</a>
 					</li>
 					{{--  Trainner Management  --}}
-					<li class="">
+					<li class="{{ (request()->is('trainerManagement') || (request()->is('trainerManagement/create') ||(request()->is('trainerManagement/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('trainerManagement.index') }}">
 						<i class="fa fa-user"></i>@lang('backend/sidebar.trainner_management')
 						</a>
 					</li>
+
 					{{-- Category Management  --}}
-					<li class="{{ (request()->is('dashboard'))? 'active': ''  }}">
-						<a><i class="fa fa-list-alt"></i>@lang('backend/sidebar.categories') <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li class="">
-								<a href="{{ route('categoriesManagement.index') }}">
-								<i class="fa fa-list-alt"></i>@lang('backend/sidebar.categories_management')
-								</a>
+					<li class="{{ (request()->is('categoriesManagement') || (request()->is('categoriesManagement/create') ||(request()->is('categoriesManagement/*/edit'))))? 'active': ''  }}">
+						<a><i class="fa fa-file"></i>
+						@lang('backend/sidebar.categories')
+						<span class="fa fa-chevron-down" style="margin-top: -14px;"></span>
+						</a>
+						<ul class="nav child_menu" style="{{ (request()->is('categoriesManagement')) || (request()->is('subcategoriesManagement')) ? 'display:block': ''  }}">
+							<li class="{{ (request()->is('categoriesManagement')) ? 'current-page': ''  }}">
+								<a href="{{ route('categoriesManagement.index') }}">@lang('backend/sidebar.categories_management')</a>
 							</li>
-							<li class="">
-								<a href="{{ route('subcategoriesManagement.index') }}">
-								<i class="fa fa-list-alt"></i>@lang('backend/sidebar.sub_categories_management')
-								</a>
+							<li class="{{ (request()->is('subcategoriesManagement')) ? 'current-page': ''  }}">
+								<a href="{{ route('subcategoriesManagement.index') }}">@lang('backend/sidebar.sub_categories_management')</a>
 							</li>
 						</ul>
 					</li>
-
+					
 					{{--  Trainer Category Management  --}}
-					<li class="">
+					<li class="{{ (request()->is('trainercategoriesManagement') || (request()->is('trainercategoriesManagement/create') ||(request()->is('trainercategoriesManagement/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('trainercategoriesManagement.index') }}">
 						<i class="fa fa-list-alt"></i>@lang('backend/sidebar.trainer_categories_management')
 						</a>
 					</li>
 					{{--  Event Management  --}}
-					<li class="">
+					<li class="{{ (request()->is('eventManagement') || (request()->is('eventManagement/create') ||(request()->is('eventManagement/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('eventManagement.index') }}">
 						<i class="fa fa-calendar-check-o"></i>@lang('backend/sidebar.event_management')
 						</a>
 					</li>
-					<li class="">
+					<li class="{{ (request()->is('SubscriptionPlanManagement') || (request()->is('SubscriptionPlanManagement/create') ||(request()->is('SubscriptionPlanManagement/*/edit'))))? 'current-page': ''  }}">
+						<a href="{{ route('SubscriptionPlanManagement.index') }}">
+						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.subscriptionplan_management')
+						</a>
+					</li>
+					<li class="{{ (request()->is('user-trainer-activity') || (request()->is('user-trainer-activity/create') ||(request()->is('user-trainer-activity/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('user-trainer-activity') }}">
 						<i class="fa fa-tasks" aria-hidden="true"></i>@lang('backend/sidebar.user_trainer_activty')
 						</a>
 					</li>
 					{{--  Fees Management  --}}
-					<li class="">
+					<li class="{{ (request()->is('FeesManagement') || (request()->is('FeesManagement/create') ||(request()->is('FeesManagement/*/edit'))))? 'current-page': ''  }}">
 						<a href="{{ route('FeesManagement.index') }}">
 						<i class="fa fa-money" aria-hidden="true"></i>@lang('backend/sidebar.fees_management')
 						</a>
@@ -133,7 +117,7 @@ $RolePermission = [];
 						</ul>
 					</li>
 					{{-- Site Seeting --}}
-					<li class="">
+					<li class="{{ (request()->is('setting')) ? 'current-page': ''  }}">
 						<a href="{{ route('setting') }}">
 						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.setting')
 						</a>
