@@ -44,7 +44,7 @@ return [
         'client_id' => '361223528173308',//env('INSTAGRAM_CLIENT_ID','1100946246936095'),
         //'client_secret' => '5c98402695d81013722b5fd84238e250',//env('INSTAGRAM_CLIENT_SECRET','5c98402695d81013722b5fd84238e250'),
         'client_secret' => '34090222e244da2e07857da321550694',//env('INSTAGRAM_CLIENT_SECRET','5c98402695d81013722b5fd84238e250'),
-        'redirect' => 'https://localhost:8000/login/instagram/callback'),
+        'redirect' => 'https://localhost:8000/login/instagram/callback',
    ],
 ];
 
