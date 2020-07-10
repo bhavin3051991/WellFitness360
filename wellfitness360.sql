@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2020 at 03:17 PM
+-- Generation Time: Jul 10, 2020 at 08:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -169,13 +169,7 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`ID`, `Event_name`, `Event_code`, `Trainer_id`, `start_date`, `end_date`, `Event_desc`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Test Event', '8gXZjJ11', '[\"4\"]', '2020-07-08', '2020-07-09', '<p>ewrew</p>', '1', '2020-07-08 18:04:56', '2020-07-08 18:36:10', NULL),
-(2, 'Test event', 'Ya9vJP4o', '[\"4\",\"5\",\"9\"]', '2020-07-10', '2020-07-11', '<p>sdfsddsfdsfds</p>', '1', '2020-07-08 18:32:16', '2020-07-08 18:32:16', NULL),
-(3, 'Yoga Event', 'bWSh3t7T', '[\"4\",\"5\",\"9\"]', '2020-07-08', '2020-07-09', '<p>dasdasdsadsadadsad</p>', '1', '2020-07-08 18:43:30', '2020-07-08 18:43:30', NULL),
-(4, 'Yoga Event', 'bWSh3t7T', '[\"4\",\"5\",\"9\"]', '2020-07-08', '2020-07-09', '<p>dasdasdsadsadadsad</p>', '1', '2020-07-08 18:43:46', '2020-07-08 18:43:46', NULL),
-(5, 'Testq', 'CDUi2VuS', '[\"4\",\"5\",\"9\"]', '2020-07-02', '2020-07-08', '<p>cdsfsd</p>', '1', '2020-07-08 19:04:04', '2020-07-08 19:04:04', NULL),
-(6, 'Testq', 'CDUi2VuS', '[\"4\",\"5\",\"9\"]', '2020-07-02', '2020-07-08', '<p>cdsfsd</p>', '1', '2020-07-08 19:04:25', '2020-07-08 19:04:25', NULL),
-(7, 'Testq', 'CDUi2VuS', '[\"4\",\"5\",\"9\"]', '2020-07-02', '2020-07-08', '<p>cdsfsd</p>', '1', '2020-07-08 19:04:36', '2020-07-08 19:04:36', NULL);
+(1, 'Yoga Event', '7qBf4wQw', '[\"4\",\"5\"]', '2020-07-09', '2020-07-11', '<p>Tetststse</p>', '1', '2020-07-10 11:49:25', '2020-07-10 12:00:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -378,6 +372,13 @@ CREATE TABLE `subcategories` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `subcategories`
+--
+
+INSERT INTO `subcategories` (`ID`, `cat_id`, `Sub_cat_name`, `Sub_cat_description`, `Sub_cat_image`, `workout_time`, `what_will_do`, `equipment`, `workout_from`, `status`, `package`, `video`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(5, 1, 'Training', 'Test', 'backend/images/SubCategoriesImage/1594362713person.png', '15 Minutes', '<p>Test</p>', 'None,Full Gym211', 'Workout from home', '1', 'paid', '', '2020-07-10 12:01:53', '2020-07-10 12:01:53', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -399,7 +400,7 @@ CREATE TABLE `subscription_plan` (
 --
 
 INSERT INTO `subscription_plan` (`id`, `Title`, `Amount`, `Duration_id`, `Status`, `created_at`, `updated_at`) VALUES
-(1, 'Training & Nutrition', 3.64, 1, 1, '2020-07-09 18:00:57', '2020-07-09 18:10:47'),
+(1, 'Training & Nutrition', 3.64, 1, 1, '2020-07-09 18:00:57', '2020-07-09 18:49:07'),
 (2, 'Training', 94.44, 1, 1, '2020-07-09 18:01:22', '2020-07-09 18:01:22'),
 (3, 'Training & Nutrition', 3.64, 2, 1, '2020-07-09 18:01:46', '2020-07-09 18:01:46'),
 (4, 'Training', 94.44, 2, 1, '2020-07-09 18:02:11', '2020-07-09 18:02:11');
@@ -431,7 +432,6 @@ INSERT INTO `trainer_categories` (`trainer_cat_id`, `trainer_cat_name`, `par_cat
 (6, 'Lycra', 1, 1, '2020-05-14 18:53:03', '2020-05-14 18:53:03'),
 (7, 'Silks', 1, 1, '2020-05-14 18:53:03', '2020-05-14 18:53:03'),
 (8, 'Yoga', 1, 1, '2020-05-14 18:53:27', '2020-05-14 18:53:27'),
-(9, 'General', 1, 1, '2020-05-14 18:53:27', '2020-05-14 18:53:27'),
 (10, 'Boxing / kickboxing', 0, 1, '2020-05-14 13:24:13', '2020-05-14 13:24:13'),
 (11, 'Boxing', 10, 1, '2020-05-14 18:56:32', '2020-05-14 18:56:32'),
 (12, 'Fundamentals', 10, 1, '2020-05-14 18:56:32', '2020-05-14 18:56:32'),
@@ -458,8 +458,7 @@ INSERT INTO `trainer_categories` (`trainer_cat_id`, `trainer_cat_name`, `par_cat
 (33, 'Bikram', 30, 1, '2020-05-14 13:43:45', '2020-05-14 13:43:45'),
 (34, 'Personal training', 0, 1, '2020-05-14 13:44:20', '2020-05-14 13:44:20'),
 (35, 'Bodybuilding', 34, 1, '2020-05-14 13:44:41', '2020-05-14 13:44:41'),
-(36, 'test', 7, 1, '2020-06-03 12:20:29', '2020-06-03 12:20:29'),
-(43, 'Gautam', 0, 1, '2020-07-03 10:58:16', '2020-07-03 10:58:16');
+(36, 'test', 7, 1, '2020-06-03 12:20:29', '2020-06-03 12:20:29');
 
 -- --------------------------------------------------------
 
@@ -682,7 +681,7 @@ ALTER TABLE `e-shop`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -730,7 +729,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subscription_plan`

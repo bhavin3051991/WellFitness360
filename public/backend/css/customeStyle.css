@@ -1,27 +1,42 @@
 .add-new-btn{
-    float: right;
+	float: right;
 }
 label.error{
-    color:#de3f3f;
+	color:#de3f3f;
 }
 .loader {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url('../images/loader3.gif') 50% 50% no-repeat rgb(249,249,249);
-    opacity: .8;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('../images/loader3.gif') 50% 50% no-repeat rgb(249,249,249);
+	opacity: .8;
 }
 .usertrainer-cls{
-    margin: 0px 0px 0px 681px;
+	/*margin: 0px 0px 0px 681px;*/
+	float: right;
 }
 div.ms-options ul{
-    min-height: 200px;
-    overflow: auto;
-    display: block;
-    max-height: 200px;
-    list-style-type: none;
-    margin: 0px 0px 0px -31px;
+	min-height: 200px;
+	overflow: auto;
+	display: block;
+	max-height: 200px;
+	list-style-type: none;
+	margin: 0px 0px 0px -31px;
+}
+.dataTables_filter {
+	width: auto;
+	float: right;
+	/*text-align: right;*/
+}
+.trainermanagement-cls{
+	width: 100%;
+}
+.user-act-cls{
+	width: 100% !important;
+}
+.submit-cls{
+	float: right;
 }

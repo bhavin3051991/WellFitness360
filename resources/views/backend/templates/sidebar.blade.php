@@ -54,7 +54,7 @@ $RolePermission = [];
 					<li class="{{ (request()->is('categoriesManagement') || (request()->is('categoriesManagement/create') ||(request()->is('categoriesManagement/*/edit'))))? 'active': ''  }}">
 						<a><i class="fa fa-file"></i>
 						@lang('backend/sidebar.categories')
-						<span class="fa fa-chevron-down" style="margin-top: -14px;"></span>
+						<span class="fa fa-chevron-down"></span>
 						</a>
 						<ul class="nav child_menu" style="{{ (request()->is('categoriesManagement')) || (request()->is('subcategoriesManagement')) ? 'display:block': ''  }}">
 							<li class="{{ (request()->is('categoriesManagement')) ? 'current-page': ''  }}">

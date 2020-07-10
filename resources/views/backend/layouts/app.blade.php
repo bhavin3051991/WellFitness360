@@ -13,7 +13,7 @@
 	<link href="{{ asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	{{--  CSS-Treeview  --}}
 	<link rel="stylesheet" href="{{ asset('backend/jstree/dist/themes/default/style.min.css') }}" type="text/css" />
-	<!-- <link rel="stylesheet" href="{{ asset('backend/css/jquery-confirm.min.css') }}" type="text/css" /> -->
+	<link rel="stylesheet" href="{{ asset('backend/css/jquery-confirm.min.css') }}" type="text/css" />
 	<link href="{{ asset('backend/css/lightcase.css') }}" rel="stylesheet" type="text/css" />
 	{{--  End CSS Tree-View  --}}
 
@@ -86,10 +86,10 @@
 	<!-- <script src="{{ asset('backend/vendors/fastclick/lib/fastclick.js') }}"></script> -->
 	<!-- bootstrap-progressbar -->
 	<script src="{{ asset('backend/vendors/raphael/raphael.min.js') }}"></script>
-	<script src="{{ asset('backend/vendors/raphael/morris.min.js') }}"></script>
+	<script src="{{ asset('backend/vendors/morris.js/morris.min.js') }}"></script>
 	<!-- <script src="{{ asset('backend/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script> -->
 	<!-- iCheck -->
-	<!-- <script src="{{ asset('backend/vendors/iCheck/icheck.min.js') }}"></script> -->
+	<script src="{{ asset('backend/vendors/iCheck/icheck.min.js') }}"></script>
 	<!-- bootstrap-wysiwyg -->
 	<!-- <script src="{{ asset('backend/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js') }}"></script> -->
 	<!-- <script src="{{ asset('backend/vendors/jquery.hotkeys/jquery.hotkeys.js') }}"></script> -->

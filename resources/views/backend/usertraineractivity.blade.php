@@ -48,7 +48,7 @@
 						</div>
 						<input type="hidden" name="_token" value="{{ csrf_token() }}" id="csrf-tokens">
 						<div class="x_content">
-							<table id="datatable-buttons" class="table table-striped table-bordered">
+							<table id="datatable-buttons" class="table table-striped table-bordered user-act-cls">
 								<thead>
 									<tr>
 										<th>Name</th>
@@ -79,7 +79,7 @@
 							</table>
 						</div>
 						<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 submit-cls">
 								<button type="submit" class="btn btn-success usertrainer-cls">Submit</button>
 							</div>
 						</div>

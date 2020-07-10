@@ -40,13 +40,19 @@
 									<div class="col-md-6">
 										<h2>Trainer Availability</h2>
 									</div>
-									
 								</div>
-								<!-- start of user-activity-graph -->
-								<div>
-									<h4>6:00-7:00</h4>
+								<div class="container">
+									<h4>15-07-2020</h4>
+									<div class="col">
+										<h5>02:00 - 03:00</h5>
+									</div>
+									<div class="col">
+										<h5>05:00 - 05:00</h5>
+									</div>
+									<div class="col">
+										<h5>07:00 - 08:00</h5>
+									</div>
 								</div>
-								<!-- end of user-activity-graph -->
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 										<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Biography</a>
