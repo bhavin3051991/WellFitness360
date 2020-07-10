@@ -48,7 +48,7 @@ class ForgotPasswordController extends Controller
                         'forgoteurl' => $url.'?token='.$rememberToken
                     );
                 $sendMail = Helper::sendMail($data,'email.forgotPassword');
-                return response()->json(array('status' => 1,'message'=> 'Please check your email because you have been sent an email.This will allow you to change your password'));
+                return response()->json(array('status' => 1,'message'=> 'Thanks!. Please check your email to get password.'));
             }else{
                 return response()->json(array('status' => 0,'message'=>'There is no account with the email id that you have inputted.Please enter registerd email'));
             }

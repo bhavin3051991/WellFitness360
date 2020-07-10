@@ -12,13 +12,13 @@ $RolePermission = [];
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="javascript:void(0);" class="site_title"><i class="fa fa-paw"></i> <span>WellFit360</span></a>
+			<a href="{{ route('dashboard') }}" class="site_title"><i class="fa fa-paw"></i> <span>WellFit360</span></a>
 		</div>
 		<div class="clearfix"></div>
 		<!-- menu profile quick info -->
 		<div class="profile clearfix">
 			<div class="profile_pic">
-				<img src="{{ asset('backend/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+				<img src="{{ asset('backend/images/img.jpg') }}" alt="logo" class="img-circle profile_img">
 			</div>
 			<div class="profile_info">
 				<span>Welcome,</span>
@@ -52,7 +52,7 @@ $RolePermission = [];
 
 					{{-- Category Management  --}}
 					<li class="{{ (request()->is('categoriesManagement') || (request()->is('categoriesManagement/create') ||(request()->is('categoriesManagement/*/edit'))))? 'active': ''  }}">
-						<a><i class="fa fa-file"></i>
+						<a><i class="fa fa-list-alt"></i>
 						@lang('backend/sidebar.categories')
 						<span class="fa fa-chevron-down"></span>
 						</a>
@@ -97,7 +97,7 @@ $RolePermission = [];
 					{{-- Site Seeting --}}
 					<li class="">
 						<a href="{{ route('E_shopManagement.index') }}">
-						<i class="fa fa-bank"></i>@lang('backend/sidebar.e_shop_management')
+						<i class="fa fa-shopping-basket"></i>@lang('backend/sidebar.e_shop_management')
 						</a>
 					</li>
 					{{--  CMS Pages Management  --}}
@@ -119,7 +119,7 @@ $RolePermission = [];
 					{{-- Site Seeting --}}
 					<li class="{{ (request()->is('setting')) ? 'current-page': ''  }}">
 						<a href="{{ route('setting') }}">
-						<i class="fa fa-list-ul"></i>@lang('backend/sidebar.setting')
+						<i class="fa fa-cog"></i>@lang('backend/sidebar.setting')
 						</a>
 					</li>
 				</ul>
