@@ -25,7 +25,7 @@
                 <div class="clearfix"></div>
                 <div class="separator">
                     <p class="change_link">New to site?
-                    <a href="{{ route('login') }}"> Login </a>
+                    <a href="{{ route('/admin/login') }}"> Login </a>
                     </p>
 
                     <div class="clearfix"></div>

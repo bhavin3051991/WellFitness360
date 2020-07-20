@@ -10,6 +10,9 @@ $(document).ready(function () {
 	if($("#event_desc").length){
 		CKEDITOR.replace( 'event_desc' );
 	}
+	if($("#blog_desc").length){
+		CKEDITOR.replace( 'blog_desc' );
+	}
 	if($("#start_date").length){
 		$('#start_date').datepicker({
 			onSelect: function(dateText, inst){
@@ -990,7 +993,7 @@ $(document).ready(function () {
 			form.submit();
 		}
 	});
-	/** USE : Delete Modules */
+	/** USE : Delete SubscriptionPlan Delete */
 	$(document).on("click",".deletPlan",function() {
 		$("#cover-spin").css("display", "block");
 		var id = $(this).attr("data-id");
@@ -1002,6 +1005,82 @@ $(document).ready(function () {
 					$("#cover-spin").css("display", "none");
 					var object = JSON.parse(JSON.stringify(response));
 					location.reload();
+				}
+			});
+		}else{
+			return false
+		}
+	});
+
+	/* USE : Blog Management */
+	$('#blogForm').validate({
+		ignore: "input:hidden:not(input:hidden.required)",
+		rules: {
+			title:{
+				required:true,
+			},
+			blogtag:{
+				required:true,
+			},
+			image:{
+				required:true,
+				extension: "JPG|JPEG|PNG",
+			},
+			blog_desc:{
+				required:true,
+			},
+			status:{
+				required:true,
+			},
+		},
+		messages: {
+			title:{
+				required: 'Please enter title.',
+			},
+			blogtag:{
+				required: 'Please enter tag.',
+			},
+			image:{
+				required: 'Please select image.',
+				extension: "Allowed only JPG|JPEG|PNG files extension.",
+			},
+			blog_desc:{
+				required: 'Please enter description.',
+			},
+			status:{
+				required: 'Please select status',
+			},
+		},
+		errorPlacement: function(error, element) {
+			if (element.attr("name") == "blog_desc" ){
+				error.insertAfter(".descerror");
+			}
+			else{
+				error.insertAfter(element);
+			}
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+	/** USE : Delete Blog */
+	$(document).on("click",".deletBlog",function() {
+		$("#cover-spin").css("display", "block");
+		var id = $(this).attr("data-id");
+		if(confirm("Are you sure you want to delete this?")){
+			$.ajax({
+				type: 'GET',
+				url: BASE_URL+'/blogManagement/delete/'+id,
+				success: function (response) {
+					$("#cover-spin").css("display", "none");
+					var object = JSON.parse(JSON.stringify(response));
+					if(object.status){
+						toastr.success(object.message);
+						location.reload(true);
+					}else{
+						toastr.error(object.message);
+					}
 				}
 			});
 		}else{

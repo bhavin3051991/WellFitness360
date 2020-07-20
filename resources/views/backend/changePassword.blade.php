@@ -36,7 +36,7 @@
                         {{ session()->get('error_msg') }}
                     </div>
                     @endif
-					<form id="changePassword" action="{{ route('changePassword') }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
+					<form id="changePassword" action="{{ route('/admin/changePassword') }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							<div class="form-group">
 							<div class="form-group">

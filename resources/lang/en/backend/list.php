@@ -12,6 +12,7 @@ return [
     'categories' => 'Categories Management',
     'subcategories' => 'Sub Categories Management',
     'subscriptionplan_management' => 'Subscription Plan Management',
+    'blog_management' => 'Blog Management',
 
     'forms' => [
         'add_new' => 'Add New',
@@ -30,6 +31,8 @@ return [
         'add_sub_categories' => 'Add Sub Categories',
         'edit_sub_categories' => 'Edit Sub Categories',
         'add_event' => 'Add Event',
+        'add_blog' => 'Add Blog',
+        'edit_blog' => 'Edit Blog',
         'edit_event' => 'Edit Event',
         'about_us_content' => 'About-Us Content',
         'contact_us_content' => 'Contact-Us Content',

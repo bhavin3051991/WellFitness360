@@ -36,7 +36,7 @@ class ForgotPasswordController extends Controller
         if($request->isMethod('post')){
             $userData  = User::where('email',trim($request->email))->whereNotIn('role_id',[1])->first(); // Role id 1 = 'admin'
             if($userData){
-                $url = env('APP_URL').'/resetPassword';
+                $url = env('APP_URL').'/admin/resetPassword';
                 $rememberToken = Str::random(120);
                 $userData->remember_token = $rememberToken;
                 $save = $userData->save();
@@ -96,10 +96,10 @@ class ForgotPasswordController extends Controller
                             'email' => trim($user->email),
                             'password' => trim($request->password),
                             'subject' => "WellFit360",
-                            'verifyUrl' => env('APP_URL').'/login'
+                            'verifyUrl' => env('APP_URL').'/admin/login'
                         );
                         $sendMail = Helper::sendMail($data,'email.sendCredential');
-                        return response()->json(array('status' => 1,'message'=>'Your Password has been changed successfully.','redirecturl' => '/login'));
+                        return response()->json(array('status' => 1,'message'=>'Your Password has been changed successfully.','redirecturl' => '/admin/login'));
                     }else{
                         return response()->json(array('status' => 1,'message'=>'Problem was accured error .Please try again.'));
                     }

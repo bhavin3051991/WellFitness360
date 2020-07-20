@@ -60,10 +60,10 @@ class LoginController extends Controller
 			$findUser = User::where('email',$credential['email'])->get();
 			if($findUser){
 				$checkVerified = User::where('email',$credential['email'])->where('email_verified',1)->count();
-				if($checkVerified){
-					if(Auth::attempt($credential)){
+				if(Auth::attempt($credential)){
+					if($checkVerified){
 						if(Auth::user()->role_id === 1){
-							$redirect = '/admin';
+							$redirect = '/admin/dashboard';
 							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 						}else if(Auth::user()->role_id === 3){
 							$redirect = '/trainer';
@@ -73,10 +73,10 @@ class LoginController extends Controller
 							return response()->json(array('status' => 1,'message'=>'Login Successfully','redirecturl' => $redirect));
 						}
 					}else{
-						return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
+						return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));
 					}
 				}else{
-					return response()->json(array('status' => 0,'message'=>'Your account is not verified. Please verify your account'));
+					return response()->json(array('status' => 0,'message'=>'Invalid login credential...'));
 				}
 			}else{
 				return response()->json(array('status' => 0,'message'=>'Please enter registered email'));
@@ -249,19 +249,19 @@ class LoginController extends Controller
 						$user->save();
 						if($user){
 							Auth::logout();
-							return redirect('login')->with('success_msg', 'Password has been changed successfully....!');
+							return redirect('/admin/login')->with('success_msg', 'Password has been changed successfully....!');
 						}else{
 							return back()->with('error_msg', 'Please try again.....');
 						}
 					}else{
-						return redirect('changePassword')->with('error_msg', 'New password & Confirm Password does not match!!!!!');
+						return redirect('/admin/changePassword')->with('error_msg', 'New password & Confirm Password does not match!!!!!');
 					}
 				}else{
-					return redirect('changePassword')->with('error_msg', 'Old password incorrect!!!!!');
+					return redirect('/admin/changePassword')->with('error_msg', 'Old password incorrect!!!!!');
 				}
 			}
 		}else{
-			return redirect('login');
+			return redirect('/admin/login');
 		}
 	}
 
@@ -278,6 +278,6 @@ class LoginController extends Controller
 
 	public function logout() {
 		Auth::logout();
-		return Redirect('login');
+		return Redirect('/admin/login');
 	}
 }

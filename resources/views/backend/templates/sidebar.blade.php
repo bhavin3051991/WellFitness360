@@ -12,7 +12,7 @@ $RolePermission = [];
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="{{ route('dashboard') }}" class="site_title"><i class="fa fa-paw"></i> <span>WellFit360</span></a>
+			<a href="{{ route('/admin/dashboard') }}" class="site_title"><i class="fa fa-paw"></i> <span>WellFit360</span></a>
 		</div>
 		<div class="clearfix"></div>
 		<!-- menu profile quick info -->
@@ -34,8 +34,8 @@ $RolePermission = [];
 			<div class="menu_section">
 				<h3>General</h3>
 				<ul class="nav side-menu">
-					<li class="{{ (request()->is('dashboard'))? 'current-page': ''  }}">
-						<a href="{{ route('dashboard') }}"><i class="fa fa-home"></i>@lang('backend/sidebar.home')</a>
+					<li class="{{ (request()->is('/admin/dashboard'))? 'current-page': ''  }}">
+						<a href="{{ route('/admin/dashboard') }}"><i class="fa fa-home"></i>@lang('backend/sidebar.home')</a>
 					</li>
 					{{--  User Management  --}}
 					<li class="{{ (request()->is('UserManagement') || (request()->is('UserManagement/create') ||(request()->is('UserManagement/*/edit'))))? 'current-page': ''  }}">
@@ -94,10 +94,16 @@ $RolePermission = [];
 						<i class="fa fa-money" aria-hidden="true"></i>@lang('backend/sidebar.fees_management')
 						</a>
 					</li>
-					{{-- Site Seeting --}}
+					{{-- Eshop Management --}}
 					<li class="">
 						<a href="{{ route('E_shopManagement.index') }}">
 						<i class="fa fa-shopping-basket"></i>@lang('backend/sidebar.e_shop_management')
+						</a>
+					</li>
+					{{-- Blog Management --}}
+					<li class="">
+						<a href="{{ route('blogManagement.index') }}">
+						<i class="fa fa-newspaper-o"></i>@lang('backend/sidebar.blog_management')
 						</a>
 					</li>
 					{{--  CMS Pages Management  --}}
@@ -147,7 +153,7 @@ $RolePermission = [];
 			<a data-toggle="tooltip" data-placement="top" title="Lock">
 			<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 			</a>
-			<a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}">
+			<a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('/admin/logout') }}">
 			<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 			</a>
 		</div>

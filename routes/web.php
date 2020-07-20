@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-	//return view('welcome');
+	return view('Frontend.home');
 });
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
@@ -33,15 +33,15 @@ Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 Route::group(['namespace' => 'Auth'], function () {
-	Route::get('logout', 'LoginController@logout')->name('logout');
-	Route::match(['GET', 'POST'], 'login', 'LoginController@index')->name('login');
-	Route::match(['GET', 'POST'], 'check-email-not-register', 'LoginController@checkEmailRegister')->name('emailnotregister');
-	Route::match(['GET', 'POST'], 'register', 'RegisterController@register')->name('register');
-	Route::match(['GET', 'POST'], 'check-email-register', 'RegisterController@EmailCheckRegister')->name('emailregister');
-	Route::match(['GET', 'POST'], 'verifyAccount/{token}', 'RegisterController@verifyAccount')->name('verifyAccount');
-	Route::match(['GET', 'POST'], 'changePassword', 'LoginController@changePassword')->name('changePassword');
-	Route::match(['GET', 'POST'], 'forgetPassword', 'ForgotPasswordController@forgetPassword')->name('forgetPassword');
-	Route::match(['GET', 'POST'], 'resetPassword', 'ForgotPasswordController@resetPassword')->name('resetPassword');
+	Route::get('/admin/logout', 'LoginController@logout')->name('/admin/logout');
+	Route::match(['GET', 'POST'], '/admin/login', 'LoginController@index')->name('/admin/login');
+	Route::match(['GET', 'POST'], '/admin/check-email-not-register', 'LoginController@checkEmailRegister')->name('/admin/emailnotregister');
+	Route::match(['GET', 'POST'], '/admin/register', 'RegisterController@register')->name('/admin/register');
+	Route::match(['GET', 'POST'], '/admin/check-email-register', 'RegisterController@EmailCheckRegister')->name('/admin/emailregister');
+	Route::match(['GET', 'POST'], '/admin/verifyAccount/{token}', 'RegisterController@verifyAccount')->name('/admin/verifyAccount');
+	Route::match(['GET', 'POST'], '/admin/changePassword', 'LoginController@changePassword')->name('/admin/changePassword');
+	Route::match(['GET', 'POST'], '/admin/forgetPassword', 'ForgotPasswordController@forgetPassword')->name('/admin/forgetPassword');
+	Route::match(['GET', 'POST'], '/admin/resetPassword', 'ForgotPasswordController@resetPassword')->name('/admin/resetPassword');
 });
 //Auth::routes();
 
@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	Route::get('/admin', 'DashboardController@index')->name('admin');
 	// Route::get('/user', 'DashboardController@index')->name('user');
 	// Route::get('/trainer', 'DashboardController@index')->name('trainer');
-	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+	Route::get('/admin/dashboard', 'DashboardController@index')->name('/admin/dashboard');
 	Route::get('/user-trainer-activity', 'DashboardController@UserandTrainerActivity')->name('user-trainer-activity');
 	Route::post('/save-user-trainer-activity', 'DashboardController@saveUserandTrainerActivity')->name('save-user-trainer-activity');
 
@@ -97,6 +97,10 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	Route::get('/SubscriptionPlanManagement/delete/{id}', 'SubscriptionPlanController@destroy');
 	Route::resource('SubscriptionPlanManagement', 'SubscriptionPlanController');
 	
+	// Blog Management
+	Route::get('/blogManagement/delete/{id}', 'BlogController@destroy');
+	Route::resource('blogManagement', 'BlogController');
+
 	// CMS-Pages Managment
 	Route::match(['GET', 'POST'], 'cms_aboutus', 'CMSPagesController@aboutUs')->name('cms_aboutus');
 	Route::match(['GET', 'POST'], 'cms_contactus', 'CMSPagesController@contactus')->name('cms_contactus');
@@ -114,3 +118,13 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 	Route::resource('FeesManagement', 'FeesController');
 
 });
+
+/* Front End Route START*/
+Route::group(['middleware' => 'login','namespace' => 'Frontend'], function () {
+	Route::get('logout', 'LoginController@logout')->name('logout');
+	Route::match(['GET', 'POST'], 'login', 'LoginController@index');
+	Route::match(['GET', 'POST'], '/check-email', 'LoginController@checkEmail')->name('/check-email');
+	Route::match(['GET', 'POST'], '/login-check', 'LoginController@loginCheck')->name('/login-check');
+});
+
+/* Front End Route END*/

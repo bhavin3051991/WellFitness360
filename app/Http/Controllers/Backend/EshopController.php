@@ -115,7 +115,6 @@ class EshopController extends Controller
     {
         $rules = [
             'Name' => 'required',
-            'Image' => 'image|mimes:jpeg,png,jpg',
             'Shop_URL' => 'required',
         ];
 

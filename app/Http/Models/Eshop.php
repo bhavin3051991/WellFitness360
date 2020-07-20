@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Eshop extends Model
 {
 	use SoftDeletes;
-    protected $table = 'E-shop';
+    protected $table = 'e-shop';
     protected $primaryKey = 'ID';
     public $timestamps = false;
     protected $fillable = ['Name','Description','Image','Shop_URL','Status'];

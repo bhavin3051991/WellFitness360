@@ -33,14 +33,14 @@ $(document).ready(function () {
 				//remote: "Email not register"
 			},
 			password: {
-				required: 'Password field is required',
+				required: 'Please enter password.',
 				minlength: 'Please enter valid 6 digit password',
 			}
 		},
 		submitHandler: function (form) {
 			$("#overlay").fadeIn(300);
 			$.ajax({
-				url  : BASE_URL+'/login',
+				url  : BASE_URL+'/admin/login',
 				type : 'POST',
 				data : $('#login').serialize(),
 				success : function(response) {
@@ -112,11 +112,11 @@ $(document).ready(function () {
 				//remote: "Email already exists."
 			},
 			password: {
-				required: 'Password field is required',
+				required: 'Please enter password.',
 				minlength: 'Please enter valid 6 digit password',
 			},
 			contact_no:{
-				required:'please enter contact no',
+				required:'Please enter contact no',
 				number:'Allewd only numeric value',
 				minlength : 'Please enter 10 digits mobile number'
 			},
@@ -124,10 +124,17 @@ $(document).ready(function () {
 				required: 'Please select gender',
 			}
 		},
+		errorPlacement: function (error, element) {
+			if(element.attr("name") == "gender") {
+				error.appendTo('.genderclass');
+			}else {
+				error.insertAfter(element);
+			}
+		},
 		submitHandler: function (form) {
 			$("#overlay").fadeIn(300);
 			$.ajax({
-				url  : BASE_URL+'/register',
+				url  : BASE_URL+'/admin/register',
 				type : 'POST',
 				data : $('#registerForm').serialize(),
 				success : function(response) {
@@ -165,7 +172,7 @@ $(document).ready(function () {
             $(".forgotr-btn").attr("disabled", true);
             $("#overlay").fadeIn(300);
 			$.ajax({
-				url  : BASE_URL+'/forgetPassword',
+				url  : BASE_URL+'/admin/forgetPassword',
 				type : 'POST',
 				data : $('#forgotePassword').serialize(),
 				success : function(response) {
@@ -213,7 +220,7 @@ $(document).ready(function () {
             $("#overlay").fadeIn(300);
             $(".reset-pwd-btn").attr("disabled", true);
 			$.ajax({
-				url  : BASE_URL+'/resetPassword',
+				url  : BASE_URL+'/admin/resetPassword',
 				type : 'POST',
 				data : $('#resetPassword').serialize(),
 				success : function(response) {

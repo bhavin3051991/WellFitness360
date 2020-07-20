@@ -17,6 +17,19 @@
 						<h2>@lang('backend/list.forms.Setting')</h2>
 						<div class="clearfix"></div>
 					</div>
+					 @if(session()->has('success_msg'))
+					  <div class="alert alert-success alert-dismissible">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						{{ session()->get('success_msg') }}
+					  </div>
+					  @endif
+
+					  @if(session()->has('error_msg'))
+					  <div class="alert alert-danger alert-dismissible">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						{{ session()->get('error_msg') }}
+					  </div>
+					  @endif
 					<div class="x_content">
 						<br />
 					<form id="settingForm" action="{{ url('/setting/update')}}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>

@@ -1,3 +1,6 @@
+label.error{
+	color:#de3f3f;
+}
 .loader {
     position: fixed;
     left: 0px;
