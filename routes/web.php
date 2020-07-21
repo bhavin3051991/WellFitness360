@@ -120,6 +120,9 @@ Route::group(['middleware' => ['auth:web'], 'namespace' => 'Backend'], function 
 });
 
 /* Front End Route START*/
+Route::get('blog', 'Frontend\HomeController@blog')->name('blog');
+Route::get('blog-details/{id}', 'Frontend\HomeController@blogDetails');
+
 Route::group(['middleware' => 'login','namespace' => 'Frontend'], function () {
 	Route::get('logout', 'LoginController@logout')->name('logout');
 	Route::match(['GET', 'POST'], 'login', 'LoginController@index');

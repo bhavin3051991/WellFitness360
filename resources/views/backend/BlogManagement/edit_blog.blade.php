@@ -19,7 +19,7 @@
 					</div>
 					<div class="x_content">
 						<br />
-						<form id="blogForm" action="{{ route('blogManagement.update',$blog['id']) }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
+						<form id="editblogForm" action="{{ route('blogManagement.update',$blog['id']) }}"  method="post" class="form-horizontal form-label-left" enctype='multipart/form-data'>
 							<input type="hidden" name="_token" value="{{ csrf_token() }} ">
 							{{ method_field("PUT")}}
 							<div class="form-group">
@@ -42,7 +42,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="image" id="image" class="form-control col-md-7 col-xs-12">
+									<input type="file" name="image" id="image" class="form-control col-md-7 col-xs-12" value="{{ $blog['blogimage'] }}">
 									<small class="text-danger">{{ $errors->first('image') }}</small>
 								</div>
 							</div>
@@ -51,6 +51,14 @@
 								</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<img src="{{ asset($blog['blogimage']) }}" alt="" width="100px;" height="100px;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="url_alias">URL alias <span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" name="url_alias" id="url_alias" class="form-control col-md-7 col-xs-12" value="{{ $blog['url_alias'] }}">
+									<small class="text-danger">{{ $errors->first('url_alias') }}</small>
 								</div>
 							</div>
 							<div class="form-group">

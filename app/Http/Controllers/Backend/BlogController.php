@@ -52,6 +52,7 @@ class BlogController extends Controller
 		$blog_insert->tag = $request->blogtag;
 		$blog_insert->blogimage = isset($request->image) ? $fullImagePath : '';
 		$blog_insert->description = $request->blog_desc;
+		$blog_insert->url_alias = $request->url_alias;
 		$blog_insert->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $blog_insert->save();
 		if($result){
@@ -105,9 +106,10 @@ class BlogController extends Controller
 		$blog_update->title	 = $request->title;
 		$blog_update->tag = $request->blogtag;
 		if(isset($request->image) && !empty($fullImagePath)){
-			$updateSubCategories->image        = $fullImagePath;
+			$blog_update->blogimage = $fullImagePath;
 		}
 		$blog_update->description = $request->blog_desc;
+		$blog_update->url_alias = $request->url_alias;
 		$blog_update->status = isset($request->status) ? ($request->status ) : '0';
 		$result = $blog_update->save();
 		if($result){

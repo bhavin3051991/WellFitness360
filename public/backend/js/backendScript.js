@@ -1026,6 +1026,9 @@ $(document).ready(function () {
 				required:true,
 				extension: "JPG|JPEG|PNG",
 			},
+			url_alias:{
+				required:true,
+			},
 			blog_desc:{
 				required:true,
 			},
@@ -1043,6 +1046,64 @@ $(document).ready(function () {
 			image:{
 				required: 'Please select image.',
 				extension: "Allowed only JPG|JPEG|PNG files extension.",
+			},
+			url_alias:{
+				required:"Please enter url alias.",
+			},
+			blog_desc:{
+				required: 'Please enter description.',
+			},
+			status:{
+				required: 'Please select status',
+			},
+		},
+		errorPlacement: function(error, element) {
+			if (element.attr("name") == "blog_desc" ){
+				error.insertAfter(".descerror");
+			}
+			else{
+				error.insertAfter(element);
+			}
+		},
+		submitHandler: function (form) {
+			$("#cover-spin").css("display", "block");
+			form.submit();
+		}
+	});
+	$('#editblogForm').validate({
+		ignore: "input:hidden:not(input:hidden.required)",
+		rules: {
+			title:{
+				required:true,
+			},
+			blogtag:{
+				required:true,
+			},
+			image:{
+				extension: "JPG|JPEG|PNG",
+			},
+			url_alias:{
+				required:true,
+			},
+			blog_desc:{
+				required:true,
+			},
+			status:{
+				required:true,
+			},
+		},
+		messages: {
+			title:{
+				required: 'Please enter title.',
+			},
+			blogtag:{
+				required: 'Please enter tag.',
+			},
+			image:{
+				extension: "Allowed only JPG|JPEG|PNG files extension.",
+			},
+			url_alias:{
+				required:"Please enter url alias.",
 			},
 			blog_desc:{
 				required: 'Please enter description.',
